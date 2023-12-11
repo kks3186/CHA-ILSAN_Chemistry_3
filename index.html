@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>테스트1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%EC%A0%9C-1-%EC%9E%A5-%EC%97%85%EB%AC%B4-%EA%B7%9C%EC%A0%95">제 1 장 업무 규정</h1>
+<p>현장검사란 검사가 진단검사의학과에서 실시되지 않고 검사실 이외의 장소에서 의사, 간호사, 또는 임상병리사에 의해 실시되고 있는 검사를 통합하여 현장검사 (POCT: Point of care testing)라 하며 원심분리 등 검체 전처리 없이 신속하게 시행하여 진단 및 치료에 이용할 수 있는 검사항목으로 혈당분석, 혈액가스 등을 측정하는 기기들이 포함된다.
+검사실 이외의 장소에서 시행하나 진단검사의학과 직원이 시행하는 검사는 제외한다.</p>
+<h1 id="1-%ED%98%84%EC%9E%A5%EA%B2%80%EC%82%AC%EC%9D%98-%EC%A0%95%EC%9D%98-%EB%B0%8F-%EA%B5%AC%EC%84%B1"><a href="#1-%ED%98%84%EC%9E%A5%EA%B2%80%EC%82%AC%EC%9D%98-%EC%A0%95%EC%9D%98-%EB%B0%8F-%EA%B5%AC%EC%84%B1">1. 현장검사의 정의 및 구성</a></h1>
+<h3 id="1-%ED%98%84%EC%9E%A5%EA%B2%80%EC%82%AC-%EC%98%81%EC%97%AD">1. 현장검사 영역</h3>
+<ul>
+<li>
+<p>혈당분석기</p>
+</li>
+<li>
+<p>혈액가스분석기</p>
+</li>
+<li>
+<p>간이 생화학분석기</p>
+</li>
+<li>
+<p>간이 혈액응고분석기</p>
+</li>
+<li>
+<p>기타 간이검사</p>
+</li>
+</ul>
+<h3 id="2-%ED%98%84%EC%9E%A5%EA%B2%80%EC%82%AC-%EC%8B%9C%ED%96%89-%EB%B0%8F-%EA%B4%80%EB%A6%AC">2. 현장검사 시행 및 관리</h3>
+<ol>
+<li>
+<p>현장검사프로그램은 현장검사위원회의 감독 하에 운영하며 현장검사관리규정을
+준수 한다.</p>
+</li>
+<li>
+<p>현장검사위원회는 현장검사위원회의 업무(위원회 내규, 관리규정)에 대한 사항을 심의,
+의결 한다.</p>
+</li>
+<li>
+<p>현장검사 요청과 승인</p>
+</li>
+<li>
+<p>현장검사 항목을 추가하고자 하는 부서장은 기존의 현장검사 관련 규정을 검토한다.</p>
+</li>
+<li>
+<p>현장검사 관련한 항목 추가 및 시행관련 규정의 개정은 현장검사관리 위원회에서
+검토되고 병원장에 의해 승인된 후 시행되어야 한다.</p>
+</li>
+<li>
+<p>검사항목 선택
+건강보험 요양급여 기준에 따라 현장검사가 가능한 검사항목이며, 정도관리실시가
+가능한 검사방법을 실시한다.</p>
+</li>
+<li>
+<p>장비 선택
+현장검사 장비는 진단검사전문의의 주도로 공정한 평가방법에 의거하여 결과의 정확성
+이 인증된 장비를 사용하여야 한다.
+현장검사의 장비인 경우 장비 폐기 시까지 검증 자료를 보관한다.</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>검증 Protocol (검사수행능 평가)</li>
+</ul>
+</blockquote>
+<ul>
+<li>Inter Assay precision(정밀도 검증), 정확도 재현성 검증
+- Correlation</li>
+<li>Analytical measurement range(AMR 검증)</li>
+<li>참고치 설정 또는 검증
+- Carry over</li>
+<li>Cut off 검증
+- 검정 protocol의 기준 및 세부방법은 장비 특성에 맞추어 각 부문별 상황에 맞도록 변             경하여 사용 하도록 한다.</li>
+</ul>
+<h4 id="1-%ED%98%84%EC%9E%A5-%EA%B2%80%EC%82%AC%EC%9D%98-%EC%9D%B8%EB%A0%A5-%EA%B5%AC%EC%84%B1-%EB%B0%8F-%EC%B1%85%EC%9E%84%EA%B3%BC-%EC%9D%98%EB%AC%B4">1. 현장 검사의 인력 구성 및 책임과 의무</h4>
+<ol>
+<li>
+<p>현장검사위원회 위원장은 (진단검사의학과 과장) 현장검사의 종합적인 운영 및 관리를
+책임진다.</p>
+<ul>
+<li>현장검사의 운영 및 관리에 관한사항</li>
+<li>현장검사의 정도관리와 질 향상에 관한 사항</li>
+</ul>
+</li>
+<li>
+<p>현장검사 질 관리 책임자는 최소한 2년 경력의 임상병리사중에서 위원장이 선출하며,
+현장검사의 전반적인 관리, 감독 및 교육을 책임진다.</p>
+<ul>
+<li>검사를 수행하는 능력을 훈련시키고 평가하는 일</li>
+<li>적절한 규정을 준수하도록 하는 일</li>
+<li>정도관리 프로그램의 관리 및 감독</li>
+<li>기기 유지 및 기능점검에 대한 관리 및 감독</li>
+<li>현장검사의 문서화 및 보고</li>
+</ul>
+</li>
+<li>
+<p>현장관리자는 현장검사를 시행하는 부서의 책임자로 현장검사 기기의 기능점검 및
+유지관리, 교육 등의 업무를 수행한다.</p>
+<ul>
+<li>신규직원 및 기존현장검사 시행 직원의 주기적인 교육</li>
+<li>적절한 규정을 준수하도록 하는 일</li>
+<li>기기 유지 및 기능점검에 대한 관리 및 감독</li>
+<li>문제 발생 시 현장검사 질관리 책임자 및 진단검사의학과 전문의에게 보고한다.</li>
+</ul>
+</li>
+</ol>
+<p>(4) 현장 검사자는 현장검사 교육 이수를 완료한 자로 현장검사를 실시하고, 내부정도관리
+등의 업무를 수행한다.
+① 검사결과를 신속, 정확, 능숙하게 실시한다.
+② 내부 정도관리 실시규정을 준수한다.
+③ 기기 유지 및 기능점검을 실시한다.
+④ 문제 발생 시 현장관리자 및 현장검사 질관리 책임자에게 보고한다.</p>
+<p>(5) 임상 자문자는 임상의사이다. 검사실과 현장부서 사이의 연결 역할을 한다.</p>
+<p>(6) 기술 자문자는 통상 진단검사의학과 전문의로 검사실의 기술적, 과학적 방면의
+감독을  할 책임이 있다.</p>
+<!--[ 현장검사 조직도 ] 2023.12.09 삭제 
+
+
+
+
+
+ 
+       현장검사위원장        = 진단검사의학과 과장
+      현장검사 질관리책임자 = 임상병리사 
+      현장관리자            = 실시부서 책임자
+      검사자                = 현장검사교육이수자 -->
+<table>
+<thead>
+<tr>
+<th style="text-align:center">NO</th>
+<th style="text-align:center">위치</th>
+<th style="text-align:center">시행부서</th>
+<th style="text-align:center">수량</th>
+<th style="text-align:center">현장 관리자</th>
+<th style="text-align:center">도입시기</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">11F</td>
+<td style="text-align:center">111병동(산과)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">11F</td>
+<td style="text-align:center">고위험산모실</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.04</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">11F</td>
+<td style="text-align:center">NR</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">11F</td>
+<td style="text-align:center">112병동(일반)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2021.01</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">10F</td>
+<td style="text-align:center">102병동(일반)</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2021.01</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">10F</td>
+<td style="text-align:center">101병동(일반)</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">9F</td>
+<td style="text-align:center">91병동</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.04</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9F</td>
+<td style="text-align:center">ICU-1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">8F</td>
+<td style="text-align:center">난임센터-수술실</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">8F</td>
+<td style="text-align:center">난임센터-외래</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">외래수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">7F</td>
+<td style="text-align:center">외래-소아청소년과</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">채혈실책임기사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">6F</td>
+<td style="text-align:center">마취통증의학</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">병동수간호사</td>
+<td style="text-align:center">2020.01</td>
+</tr>
+</tbody>
+</table>
+<p><img src="image.png" alt="Alt text">
+<img src="https://ilsan.chamc.co.kr/asset/img/logo.png" alt="Alt text"></p>
+<h1 id="2-%ED%98%84%EC%9E%A5%EA%B2%80%EC%82%AC-%EB%AA%A9%EB%A1%9D">2. 현장검사 목록</h1>
+<ol start="2">
+<li>혈액가스 현장검사                                                 2022/03 기준</li>
+</ol>
+<p>NO
+장비명
+시행부서
+현장 관리자
+연락처
+기기도입시기
+1
+I-STAT
+신생아집중치료실
+신생아집중치료실
+수간호사
+8467
+2020.01
+2
+I-STAT
+마취과
+수간호사
+8421
+2021.01
+3
+I-STAT
+ICU
+수간호사
+8481
+2021.01</p>
+<ol start="2">
+<li>혈당기 현장검사 - 바로잰 EXPERT plus</li>
+</ol>
+<p>NO
+위치
+시행부서
+수량
+현장 관리자
+도입시기
+1
+11F
+111병동(산과)
+1
+병동수간호사
+2020.01
+2
+11F
+고위험산모실
+1
+병동수간호사
+2020.04
+3
+11F
+NR
+1
+병동수간호사
+2020.01
+4
+11F
+112병동(일반)
+1
+병동수간호사
+2021.01
+5
+10F
+102병동(일반)
+2
+병동수간호사
+2021.01
+6
+10F
+101병동(일반)
+3
+병동수간호사
+2020.01
+7
+9F
+91병동
+2
+병동수간호사
+2020.04
+8
+9F
+ICU-1
+2
+병동수간호사
+2020.01
+9
+8F
+난임센터-수술실
+1
+병동수간호사
+2020.01
+10
+8F
+난임센터-외래
+1
+외래수간호사
+2020.01
+11
+7F
+외래-소아청소년과
+1
+채혈실책임기사
+2020.01
+12
+6F
+마취통증의학
+2
+병동수간호사
+2020.01
+13
+6F
+신생아중환자실
+1
+병동수간호사
+2020.01
+14
+6F
+분만실
+1
+병동수간호사
+2020.01
+15
+5F
+건진센터
+1
+검진센터팀장
+2020.06
+16
+3F
+내시경센터
+1
+병동수간호사
+2021.03.05
+17
+3F
+외래(내분비내과)
+1
+외래수간호사
+2020.01
+18
+1F
+응급실
+2
+응급실수간호사
+2020.01
+19
+B1
+인공신장실
+3
+외래수간호사
+2020.06
+20
+B2
+핵의학과
+1
+파트장
+2020.01</p>
+<p>기기 보유현황
+29</p>
+<p>병동, 특수부서
+20
+외래
+3</p>
+<p>: 혈당기 현장관리자는 각 부서 책임자로 한다.</p>
+<ol start="4">
+<li>현장검사 시작 및 중단 일시 기록</li>
+</ol>
+<p>검사장비
+설치장소
+검사
+시작
+중단
+일시
+비           고
+I-STAT
+신생아집중치료실
+2020.01</p>
+<p>I-STAT
+마취과
+2021.01</p>
+<p>I-STAT
+ICU
+2021.01</p>
+<p>한독Barozen
+병동 및 외래
+2020.01</p>
+<ol start="5">
+<li>현장검사 정보</li>
+</ol>
+<p>처방코드
+처방명
+검사정보
+분류번호
+EDI
+LC105
+Blood Gas
+RP500
+-BG,Na,K,Cl,ionCa,Lactate
+누041
+D0410
+i-STAT EG7+ Cartridge
+-BG,Na,K,,ionCa
+EPOC BGEM2 Test card
+LC??
+Glucose(POCT)
+혈당검사
+누302가
+D3021</p>
+<h1 id="3-%EC%A7%80%EC%B9%A8%EC%84%9C-%EB%B0%8F-%EB%AC%B8%EC%84%9C-%EA%B7%9C%EC%A0%95">3. 지침서 및 문서 규정</h1>
+<ol>
+<li>
+<p>모든 검사는 검사 지침서에 의하여 책임기사의 주관 하에 임상병리사가 수행하고          부득이 한 경우에는 진단검사의학팀장 및 진단검사의학전문의와 상의한 후 실시한다.       검사 지침서는 누구나 참고할 수 있도록 찾기 쉬운 곳에 비치하고 책임기사                및 진단검사의학전문의는 지침서의 전 과정을 최소한 1년에 한 번씩 검토 확인하여         &quot;개정 기록 목록표&quot;에 서명하여야 한다.</p>
+</li>
+<li>
+<p>각 검사항목 별 서명이 있어야 하며 검사 지침서의 내용 중 검사시행 과정의 변동          이 있는 경우에는 새로 작성하는 것보다는 변경 내용을 추적할 수 있도록 수정한다.<br>
+이 때 수정자의 서명과 일자를 기록하며 최종적으로 진단검사의학과 전문의가 확인         하여야 한다.</p>
+</li>
+<li>
+<p>검사지침서에는 검사실에서 시행하고 있는 모든 검사에 대하여 실제로 시행하는 방         법이 열거되어야 한다. 검사를 생략하거나 검사법이 실제와 다르게 지침서에 표기해서      는 안 된다.</p>
+</li>
+<li>
+<p>모든 임상 병리사는 지침서를 필독하고 &quot;지침서 내용 회람 명부&quot;에 서명하며, 책임기사는    모든 업무를 총괄하고 검사장비 관리 및 업무장애 등을 즉시 해결하여야 한다.</p>
+</li>
+<li>
+<p>진단검사의학과 전문의는 신규 검사의 도입 시, 검사 시행과정에 변동이 있는 경우, 연 1     회 이상, 담당 전문의 변경 시 검사지침서를 검토하고 서명하여야 한다.</p>
+</li>
+<li>
+<p>중단된 검사의 검사지침서는 최소 2년간 보관하며 검사 시작과 중단 시기가 기록되어
+있어야 한다.</p>
+</li>
+<li>
+<p>문서 개정 및 관리
+(1) 새로운 문서 및 지침서에 삽입될 내용은 각 부문별 책임기사의 검토 후 진단검사          의학 전문의의 최종 승인을 받아 승인된다.</p>
+</li>
+</ol>
+<p>(2) 검사 의뢰 안내서, 검체검사운영지침서, 검사실 운영지침서, 안전관리 지침서, 전            산관리 지침서등은 Uni-HIS 게시판 또는 문서관리 공유 폴더에 게시하여 전 직원이         항상 쉽게 찾아 볼 수 있도록 게시한다. 위 지침서에 대한 수정 및 개정은 진단검사        의학과 전문의 및 부문별 책임기사만 할 수 있다.</p>
+<p>(3) 지침서의 경우 Uni-HIS 게시판 또는 문서관리 공유 폴더에 등록한 후 한부는 출력하       여 페이퍼 형태의 문서로 만들고 이는 항상 최신판을 유지 하도록 한다.</p>
+<p>(4) 진단검사의학과에서 사용되는 모든 문서(서식포함)는 최신판만을 사용한다.</p>
+<p>(5) 새로운 문서를 생성할 때에는 기존 문서를 참조하여 생성하여 게시하며 진단검사의학   과 전문의의 검토를 거쳐야한다.</p>
+<p>(6) 문서 폐기
+① 2년 보관 문서 : 검사의뢰서, 결과보고서, 정도관리 기록, 외부정도관리 기록, 장비                           관련 기록
+② 10년 보관 문서 : 혈액은행 관련 자료, 유전자 동의서, 유전자 검사 결과
+③ 20년 보관 문서 : 중요한 유전자 검사 기록
+④ 영구 보존 문서 : 질 관리 지침 및 검사 지침서
+⑤ 모든 문서는 문서관리 규정에 준하여 관리 된다.</p>
+<ol start="4">
+<li>업무 규정</li>
+</ol>
+<ol>
+<li>모든 검사결과는 규정된 시간 내에 보고 되어야 하고 근무시간은 아래와 같다.
+(1) 주간근무 : 평     일        - 08:30～17:30       토요일 - 08:30～12:30</li>
+</ol>
+<p>(2) 야간근무 : 평     일        - 17:30～익일 08:30  토요일 - 17:30～익일 08:30</p>
+<p>(3) 당직근무 : 일요일 및 공휴일 - 08:30～17:30       토요일 - 12:30～17:30</p>
+<p>(4) 당직근무 (야간 및 공휴일) :  요화학,접수 업무</p>
+<ol start="2">
+<li>업무분담</li>
+</ol>
+<p>수 석 병 리 사
+임 상 병 리 사  1, 2
+현장검사위원회 간사
+현장검사자 교육
+현장검사 정도관리 문서화
+외부정도관리 시행
+혈액가스 결과관리
+혈액가스 월 정도관리 보고
+혈당기 정도관리 물질 교체</p>
+<p>&lt;표1. 업무분담표&gt;</p>
+<ol start="3">
+<li>
+<p>책임기사는 모든 업무를 총괄하고 책임기사가 부재중일 경우에는 그 업무를 대행할
+임상병리사에게 인계하고 업무를 대행한다. 임상병리사는 검사전반에 관한 사항을 팀장
+에게 보고한다. 또한 책임기사는 부재 다음 날 전일업무에 대하여 모든 주요사항을
+오전 중에 점검하여 팀장에게 보고한다.</p>
+</li>
+<li>
+<p>현장검사 담당자는 현장검사자 교육 및 정도관리 문서화 업무를 담당하며 부서내의 업무     처리도 함께 병행하여야 한다.</p>
+</li>
+<li>
+<p>직원 교육 및 평가
+(1) 신입직원
+소정의 절차에 따라 선발된 신입직원은 진단검사의학과의 규정대로 3개월 동안 업무       에 필요한 기초 지식을 습득한 후 진단검사의학전문의, 진단검사의학팀장, 책임병리         사의 평가 후  바로 업무에 임할 수 있도록 한다.</p>
+</li>
+</ol>
+<p>(2) 직원
+외부기관, 자체 내에서 실시하는 모든 교육 프로그램에 참여하여 자질 향상에 힘쓴다.</p>
+<p>(3) 현장검사자 교육
+현장검사자는 환자진료와 관련된 업무와 종사하는 병원 직원 중 현장검사 교육이수자
+가 시행한다. 현장검사를 실시하는 모든 직원은 다음과 같은 교육을 년 1회 이상 실시
+한다.
+&lt; 교육내용 &gt;
+- 현장검사 수행을 위한 안전관리 및 감염관리
+- 혈당기 정도관리 및 참고범위 교육
+- Blood gas (I-STAT) 장비사용 및 교육
+- 정도관리 교육</p>
+<p>(4) 새로운 현장검사자 및 신규직원이 배치된 경우 반드시 검사지침서를 숙지하여
+현장관리자에게 검사시행 방법 등을 확인 후 수행한다.</p>
+<ol start="6">
+<li>
+<p>안전관리 및 감염관리
+안전관리의 목적은 안전수칙에 대한 지식을 습득함으로써 검사주변의 위험요소들을        사전에 차단, 안전사고로부터 자신의 생명과 건강을 보호하며, 보다 위생적이고 쾌적한      근무 환경을 조성하여 업무의 능률을 높이는 데 그 목적이 있다. 진단검사의학과 내 안     전관리는 진단검사의학전문의 또는 진단검사의학팀장의 책임 하에 안전관리자가 실무를     담당하며 각 부문별 책임기사는 안전관리 프로그램의 내용에 따라 수시로 확인하고         기타 모든 사항은 “진단검사의학 안전관리 및 감염관리 지침”을 따른다.</p>
+</li>
+<li>
+<p>질 관리
+검사실의 질관리 적정도는 객관적, 체계적으로 평가되어 환자 치료개선과 확인된 문제      해결에 도움이 되도록 해야 하고 기타 모든 사항은 “진단검사의학 운영 지침”을 따른다.</p>
+</li>
+</ol>
+<ol start="5">
+<li>시약(Reagent)</li>
+</ol>
+<ol>
+<li>
+<p>국가기관으로부터 인증 받은 제품을 사용하는 것을 원칙으로 한다.</p>
+</li>
+<li>
+<p>현장검사에 사용되는 시약은 시약 취급과 보관에 대한 제조사 지침을 따르며 검증된       검사방법과 결과에 대해 확인 후 사용한다.(시약별 Insert 참고)</p>
+</li>
+<li>
+<p>시약 사용 시 개봉 일시를 시약 앞면 또는 잘 보이는 곳에 표기한 후 사용한다. 조제       시약의 경우에는 조제일자와 유효기간을 함께 기록한다.</p>
+</li>
+<li>
+<p>Kit내에 여러 가지의 시약으로 구성되어 있을 경우 같은 Lot no. 끼리 사용한다. 단         Kit에 남아 있는 시약은 폐기 처분한다.</p>
+</li>
+<li>
+<p>모든 시약은 유효기간을 엄수하여야 한다. 유효기간이 지난 시약을 사용해야 하는 경      우는 시약의 검증과정(정도관리결과 확인)을 거친 후 환자 검체에 사용한다.</p>
+</li>
+<li>
+<p>시약은 제조회사가 권장하는 보관방법에 따라 보관하여야 한다.</p>
+</li>
+<li>
+<p>시약변질이 발생하지 않도록 모든 시약의 보관은 정해진 보관조건을 반드시 따르며,       변질된 시약이 발견되면 현장검사 질 관리 책임자에게 알리고 폐기한다.</p>
+</li>
+<li>
+<p>현장 검사자는 해당검사에 필요한 시약의 1차적인 기록과 관리 책임이 있고 현장검사      질 관리 책임자는 이를 통괄 관리 하여야 한다.</p>
+</li>
+<li>
+<p>UniHis 구매재고 – 현장검사시약사용내역에서 Lot, 유효기간, 사용량 등을 관리한다.</p>
+</li>
+</ol>
+<p>&lt; 현장검사 시약보관 현황 &gt;</p>
+<p>장비명
+물품코드
+시약명
+제조사 보관지침
+현장 보관현황
+개봉후 유효기간
+BAROZEN
+Xpert
+GAVSI0001
+Glucose(strip)
+1 - 30°C
+실온
+18개월
+포도당대조용액
+8 - 30°C
+실온
+3개월
+i-STAT
+GEI121501
+i-STAT EG7+ Cartridge
+2 - 8°C
+냉장
+실온화 2개월
+GEP010301
+i-STAT ACT Cartridge
+2 - 8°C
+냉장
+실온화 14일</p>
+<ol start="6">
+<li>검사결과 보고(Reporting of results)</li>
+</ol>
+<ol>
+<li>결과 보고의 일반적 원칙
+(1) 현장검사 결과는 검사 시행과 동시에 결과가 인터페이스 되어 자동으로 보고 된다.</li>
+</ol>
+<p>(2) 모든 검사에 있어서 검사실에서 검증, 정의된 참고치가 있어야 한다. 참고치는 되도        록 이면 검사가 처음 set-up될 때 나이, 성별에 맞게 검사실 자체에서 건강 대상 군        을 정하여 시행하여 얻고 직접 구하기 어려운 경우 담당전문의가 문헌 등에 이미 발        표되어 사용되는 자료로 대체할 수 있다.</p>
+<p>(3) 모든 검사결과는 보고 시 참고치를 같이 제공하고 high/low flag도 표시 한다.</p>
+<ol start="2">
+<li>환자 결과 확인(Verification)
+(1) 진단검사의학과로 의뢰된 검사결과는 모두 전산시스템에 저장되고 조회된다.</li>
+</ol>
+<p>(2) 진단검사의학과 전산시스템에서는 각 검사항목에 대하여 미리 등록되어 있는 High,        low, panic value에 대하여 결과확인 시 확인하게 되며 정해진 범위를 넘는 결과치         에 대해서는 이상표시로 나타난다.</p>
+<p>(3) 환자의 검사결과에 대해 이전결과와 현재결과의 변동폭이 정해진 범위를 초과하면         Delta에 확인되어 이상표시로 나타난다. 검사항목에 따라 delta 확인은 DD, DP,             RD, RP, CD등으로 관리된다.
+① Panic : HP(정상보다 높음), LP(정상보다 낮음)으로 구분되며, 검사자는 반드시 검                  사결과를 재검 등을 통하여 확증하여야 하며, 필요하면 신속하게 진료과에                 연락한다.
+② Delta : delta check는 시간에 따라 변할 수 있는 검사항목(time dependent)과                      시간에 따라 크게 변하지 않는 검사항목(time independent)으로 나누어                    그 범위를 크게 5종류로 나누어 계산하여 등록한다.
+㉠ DD (Delta Difference) = current value - previous value
+㉡ DP (Delta Percent change) = (delta difference/current value)×100%
+㉢ RD (Rate Difference) = delta difference/delta interval(일)
+㉣ RP (Rate Percent change) = delta percent change/delta interval(일)
+㉤ CD (Character Difference) = neg, pos등 character성 결과를 비교한다.</p>
+<p>(4) 자동화 장비로 분석된 검사결과는 전산시스템으로 Interface되며, 해당 검사결과를          검토하여 결과를 확인한다.
+① 혈액가스 부분결과로 인한 재검 시에는 진단검사의학과에 검체취소를 요청한다.
+pH, pCO2, pO2, Hb 결과가 안 나오는 경우는 검체상의 문제이므로 재 채혈하거나
+재검을 실시한다.
+② Autoverify 된 검사결과의 수정 시에는 환자 검체결과 수정 신청서에 준하여 처리한         다.</p>
+<p>(5) 수 작업으로 검사결과를 입력하는 경우에는 미리 등록된 결과입력 형식을 확인하여        입력오류를 방지하며, 또한 미리 결과입력내용을 Help로 master에 등록하여 입력           시 편리하게 사용할 수 있도록 한다.</p>
+<ol start="3">
+<li>이상결과 보고 관리
+CVR(Critical Value Report)은 환자의 진단, 치료 예후판정등에 필요한 검사결과를 제공하    기 위해 시행하는 검사 중 검사의 결과가 환자의 생명에 결정적인 영향을 미칠 수 있어     치료의 결정에 중요한 한계를 초과하는 경우로 진단검사의학과 전문의가 자체적으로 설정    하거나 해당 임상의사와 상의하여 설정한다.</li>
+</ol>
+<p>(1) 정확한 검사 보고를 위한 절차
+① CVR 발생 시 담당주치의에게 즉시 연락하여 첫 결과를 알려주되 전화                      받은 주치에게 다시 결과를 읽게 하여 정확한 전달이 되었는지 확인해야                   한다. 결과 입력 시 Foot note에 보고 받은 피통보자의 이름을 입력한다.
+② 통보 내용으로는 환자성명, 등록번호, 검체번호, 발생일시, 검사결과, 보고자, 보             고 받는 자가 포함되어야 한다.
+③ CVR값이 나온 환자의 list는 월1회 출력하여 진단검사의학과 전문의 확인을 받는다.</p>
+<pre><code>④ 현장검사 CVR 리스트 
+  POCT 현장검사의 Critical 결과는 주치의/처방의가 직접 시행할 경우를 제외하고            인턴 및 간호사가 시행할 경우에는 Critical 결과확인 즉시 처방의/주치의에게 구두보        고하고 그 내용을 기록한다. 
+</code></pre>
+<p>부   문
+검사 종목
+결과치
+통보기준
+생화학
+Glucose(성인)
+&lt;50 mg/dL    &gt;600mg/dL
+즉시 통보
+Glucose(소아)
+&lt;30 mg/dL    &gt;500mg/dL</p>
+<p>표) 진단검사 CVR 범위참조</p>
+<pre><code>⑤ 확인되지 않은 검사결과는 원칙적으로 알려주지 않는다. 결과확인 전에 문의가 오          는 경우는 “결과 재검 중“이라고만 답하고 결과는 원칙적으로 알려주지 않는다. 신속         한 결과처리로 조회가 가능토록 한다.
+</code></pre>
+<ol start="4">
+<li>보고된 검사결과가 변경될 경우 확인절차</li>
+</ol>
+<p>(1) 결과 확인 후 불가피하게 결과를 수정해야 하는 경우는 책임기사에게 보고하고,             책임기사는 팀장 및 전문의에게 보고하는 절차를 거친다.</p>
+<p>(2) 수정된 검사결과는 전산시스템을 통하여 수정결과, 수정 사유 등을 입력 후 수정            Verify 한다.</p>
+<p>(3) 결과수정 후에는 바로 검사를 의뢰한 부서에 연락하여 수정된 검사결과를 알리고           통보 받은 자의 이름, 통보시간 등을 기재한다.</p>
+<p>(4) 간호사나 주치의로부터 결과수정을 요구받는 경우, 특히 확인된 검사의 결과나 검           체 채취가 잘못되어 수정되어야 하는 경우에는 “환자/검체 수정신청서“를 작성 후 조        치한다.</p>
+<p>(5) 환자/검체 수정신청서에는 등록번호, 성명, 수정사유, 신청인 및 이미 보고된 검사결과       를 자세히 기록하여야 한다.</p>
+<p>(6) 수정된 검사결과는 수정 전 검사결과와 함께 전산으로 조회되어야 한다.</p>
+<ol start="5">
+<li>결과 지연 시 조치사항</li>
+</ol>
+<p>(1) 장비의 이상이나 기타의 사유로 인해 결과 보고가 지연될 경우 신속히 책임기사와       진단검사의학 전문의에게 보고한다.</p>
+<p>(2) 응급실 및 임상에 신속히 발생된 문제점과 문제 해결까지의 시간을 알려주어 진료에       차질이 없도록 하며 최대한 신속히 문제를 해결하도록 한다.</p>
+<p>(3) 문제 해결 후 업무일지에 문제점 및 해결 방안을 기록한다.
+(4) 수기 상, 분석상의 오류 혹은 예외적인 결과를 보였을 경우의 처리 지침.
+검사 중 중대한 수기상의 오류나 분석상의 오류를 감지하였을 때, 혹은 예외적인 결        과를 보일 때는 1시간 내에 현장검사 질 관리 책임자나 담당전문의의 확인을 받고         결과를 보고한다.</p>
+<ol start="6">
+<li>현장검사 질 관리 책임자 부재 시의 처리 지침</li>
+</ol>
+<p>(1) 야간 검사 시행 시 익일 오전에 현장검사 책임자가 확인한다.
+(2) 현장검사 책임자가 휴가 시 현장검사위원회 소속 임상병리사 혹은 진단검사의학과 전       문의가 확인한다.</p>
+<ol start="7">
+<li>문제발생시 지침</li>
+</ol>
+<ol>
+<li>
+<p>업무 시 문제가 발생하여 해결을 할 수 없거나 본인이 책임질 수 있는 범위를 벗어났       다고 판단되는 경우 현장 검사자는 현장검사 질 관리 책임자에게 보고하고, 현장검사       질 관리 책임자가 해결하거나 책임질 수 있는 범위를 벗어났다고 판단하는 경우 팀         장, 진단검사의학과 전문의에게 보고한다.</p>
+</li>
+<li>
+<p>주사침, 기구, 장비에 의한 손상 등 안전사고가 발생한 경우 안전담당자에게 연락하         여 적절한 조치를 취하고 안전담당자는 현장검사 질 관리 책임자, 담당전문의에게 보       고한다. 입원치료를 요하는 중대한 안전사고가 발생할 경우 즉시 현장검사 질 관리         책임자, 진단검사의학과 전문의에게 보고한다.</p>
+</li>
+<li>
+<p>보고를 받는 사람은 문제를 적극적으로 해결하고 적절한 조치를 취할 의무를 갖는다.</p>
+</li>
+<li>
+<p>현장검사위원회 운영회의에서 문제가 되었던 상황이나 사건, 사고를 보고하며 필요한      경우 향후 지침을 논의한다.</p>
+</li>
+<li>
+<p>다음과 같은 사항이 발생시에는 야간, 휴일 중이라도 현장검사 질 관리 책임자, 진단검     사의학과 전문의에게 즉시 보고 한다.</p>
+</li>
+</ol>
+<p>(1) 임상과 중대한 마찰이 생겨 진단검사의학과에 문제를 제기할 만한 사항이 발생할 경       우</p>
+<p>(2) 전산장애 또는 장비고장으로 등으로 인해 검사가 6시간 이상 지연될 경우
+- 환자 치료 시 영향을 최소화하기 위하여 발생된 문제에 즉시 대처하여야 한다.
+검사를 실시할 수 없을 경우 진단검사의학과 검사실로 직접 검체를 보내어 검사하거         나 다른 방법 또는 다른 장비로 검사하거나, 문제를 해결할 수 있는 검사실 담당자         에게 연락하여 검사가 지연되는 일이 없도록 한다.
+(3) 입원치료를 요하는 안전사고 발생시</p>
+<p>(4) 기타 중대한 상황 발생시</p>
+<ol start="6">
+<li>
+<p>현장 검사자는 업무 교대 시 내부정도관리 결과 확인, 기기 기능 점검 및 유지, 온도       등에 대해 적극적인 확인을 해야 한다. 위 사항으로 문제 발생시 현장검사 질 관리 책      임자 및 진단검사의학과 전문의에게 보고한다.</p>
+</li>
+<li>
+<p>문제발생시 즉각적으로 대처할 수 없을 경우 환자치료에의 영향을 최소화하기
+위하여 진단검사의학과로 검체를 보내어 검사하거나 다른 방법으로 검사를 의뢰한다.</p>
+</li>
+</ol>
+<p>&lt; 대체장비 및 검사항목 &gt;</p>
+<p>검사항목
+현장검사 장비
+진단검사 장비
+조치사항
+Blood gas
+I-STAT
+ABL 90
+즉시 검사실로 이동
+Glucose
+바로잰
+Expert plus
+Cobas 8000
+정량검사로 의뢰변경</p>
+<p>&lt; 장비 점검이나 문제 발생 시 연락처 &gt;</p>
+<p>장비명
+모델명
+제조회사
+공급
+담당자 / 연락처
+혈당측정기
+바로젠HXpert
+아이센스
+한독
+콜센터 02-527-5266
+혈액가스
+I-STAT
+Abbott
+(주)피오씨코리아
+학술: 이상아 010-7336-0423
+영업: 현연범 010-4903-2578</p>
+<p>제 2 장 현장검사자 관리</p>
+<ol>
+<li>현장검사자 교육</li>
+</ol>
+<ol>
+<li>
+<p>현장검사자는 환자진료와 관련된 업무에 종사하는 병원 직원으로 현장검사 교육을 이수
+한 자가 실시한다. 현장검사를 실시하는 모든 직원은 연 1회 이상 교육을 실시한다.</p>
+</li>
+<li>
+<p>교육내옹은 다음의 내용을 포함한다.</p>
+</li>
+</ol>
+<ul>
+<li>현장검사 수행을 위한 안전관리 및 감염관리</li>
+<li>혈당기 정도관리 및 결과관리 교육</li>
+<li>Blood gas 정도관리 및 장비관리 교육</li>
+</ul>
+<ol start="3">
+<li>새로운 현장검사자 및 신규직원이 배치된 경우 현장관리자는 현장검사의 기본교육을
+실시하고 숙련도 여부를 평가한 후 검사를 수행할 수 있도록 한다.</li>
+</ol>
+<ul>
+<li>정도관리의 이해</li>
+<li>장비관리 및 error 대처</li>
+<li>환자확인 및 감염관리 예방</li>
+<li>검체 채취 및 검사실시</li>
+<li>결과확인 및 결과보고 등의 process를 점검하여 평가한다.</li>
+</ul>
+<ol start="4">
+<li>
+<p>UniHis 교육정보관리시스템에 교육그룹등록(직무교육)에서 ‘현장검사자 교육’을 개설하고
+교육이수등록을 실시한다.</p>
+</li>
+<li>
+<p>현장검사와 관련된 교육자료는 UniHis 게시판 [진검게시판]을 참조한다.</p>
+</li>
+</ol>
+<ol start="2">
+<li>검체 채취 및 취급(Specimen handling)</li>
+</ol>
+<ol>
+<li>
+<p>환자 확인 방법
+검체 채취에서 결과보고까지 검사의 모든 단계에서 바뀌지 않도록 지속적으로 주의         하고 성상을 확인하면서 검사를 시행한다. 만약 의식이 있는 환자라면 본인여부를 두       가지 이상의 정보(이름, 주민번호 앞자리, 등록번호 등)로 확인한다.</p>
+</li>
+<li>
+<p>현장에서 시행되는 모든 검체는 환자이름, 등록번호, 채취일자, 접수번호 등이 표기          된 바코드가 부착되어 있는 것이 원칙이며 즉시 채취해서 검사를 시행할 경우는 장         비에 환자등록번호를 정확히 입력하고 검체에 환자 인적 스티커를 부착해서 재차 확        인한다.</p>
+</li>
+<li>
+<p>환자 준비상황
+Glucose 검사의 경우 공복, 식후혈당 검사를 정확히 구분하여 검사한다.</p>
+</li>
+<li>
+<p>검체 채취방법
+(1) 동맥채혈에 관한 지침
+① 동맥혈을 이용하는 검체는 응급상황에 의뢰하는 경우가 많고 검사결과가 환자 진료        에 치명적인 영향을 미칠 수 있는 중요한 검사이다. 동맥혈 채혈은 기술적으로 어          려울 뿐만 아니라 환자에게 통증이 심하고 vasovagal response, arteriospasm,              hematoma, thrombosis, embolism등을 초래할 수 있는 위험성이 있다.
+② 동맥혈에 의한 검사는 검체 채취, 검체 운반 그리고 검사과정상의 문제 때문에 결          과 오차를 가져올 수 있다. 검체 채취 시 주사기에 공기방울이 없도록 채혈 즉시           검사해야 한다.
+③ 동맥혈은 대개 손목의 radial artery에서 의사가 채혈하게 된다. 단, Allen test를 먼          저 시행하여 ulna artery에 의한 collateral circulation에 적절히 이루어지고 있는지          확인하여 만일 문제가 있다면 다른 채혈 부위(예: brachial artery, femoral artery )          를 찾아야 한다.
+④ 채혈할 주사기 벽에 Heparin을 coating 후 채취한 후 즉시 고무마개를 하여 대기 중         의 산소접촉을 피한다. (20~30 unit/ Blood 1mL)</p>
+<pre><code> Sodium heparin pH=7.0
+ 사용량 0.05mL /1mL 혈액
+ 실제 0.15-0.25mL per 2-4mL
+</code></pre>
+</li>
+</ol>
+<p>(2) 외래 환자의 동맥채혈시의 지침(현장부서에서 요구 시)
+① 전공의는 동맥채혈을 시행하기 전에 바코드에 적힌 환자의 등록번호, 인적사항 등          을 확인하고 ABGA주사기와 소독제를 준비한다.
+② 환자의 체온, 호흡수, 산소투여 여부를 기록하고 만약 환자가 산소를 투여 받고 있          다면 산소 농도와 투여 방법을 기록한다. 만약 산소 투여 여부나 투여 속도가 변했         을 경우, 그 시점부터 최소한 30분이 경과한 후에 동맥채혈을 시행한다.
+③ 환자와 가벼운 대화를 통해 안정되게 하고 편안한 자세로 최소한 5분 이상 있게           하여 호흡이 고르게 되도록 한다.</p>
+<p>(3) 요골 동맥 천자
+① Allen 검사(collateral circulation) : 환자가 주먹을 꽉 쥐게 한 후 양 손의 엄지손            가락으로 요골 동맥과 척골동맥을 꽉 눌러 혈행을 막은 다음 환자가 주먹을 자연           스럽게 펴도록 한다. 척골 동맥을 누르고 있던 손가락의 힘을 풀고 환자의 손바닥,          손가락을 관찰하여 15초 내로 혈행이 돌아오는 것을 확인한다. 만약 혈행이 돌아           오지 않으면(Allen 검사 음성) 대퇴동맥이나 상완동맥 등 다른 동맥을 선택한다.</p>
+<pre><code>② 손바닥을 위로 향하게 한 후 손목을 30° 정도 뒤로 젖히게 한다. 
+③ 손목 주름의 바로 윗부분에서 손가락으로 동맥을 촉지하여 동맥의 위치를 확인하           고 동맥의 크기, 방향, 깊이를 추정한다.
+④ 동맥천자를 시행할 곳을 소독제로 소독한다.
+⑤ 한 손으로 주사기를 바늘의 빗면이 위를 향하도록 연필 쥐듯이 잡고 다른 손가락           으로 동맥천자를 시행할 곳을 촉지 한다. 촉지한 곳의 약 5~10mm아래지점에서            동맥이 지나가는 방향으로 바늘 각도를 약 45 ° 정도로 하여 피부를 천자한다.
+⑥ 바늘을 촉지한 손가락 아래 부위로 진행시켜 동맥을 천자한 후 주사기로 동맥혈이          자연히 역류 되는 것이 확인되면 부드럽게 마개를 잡아당겨 주사기 내로 동맥혈을          채운다.
+⑦ 적당량이 채혈 되면 재빨리 바늘을 빼고 마른 거즈를 천자 부위에 놓은 후 손가락          으로 천자 부위를 최소 5분 이상 꽉 누른 후 손가락의 힘을 약간 느슨하게 하여           약 2분간 더 누른다. 만약 환자가 항응고제 치료를 받거나 응고 시간이 연장되어           있다면 더 오래 누르고 있는다.
+⑧ 거즈를 제거하고 천자 부위를 관찰하여 혈종이 없는 것과 손의 혈행이 원활한지를          확인한다.
+⑨ 채혈 부위에서 바늘을 제거한 후 곧바로 주사기 내의 공기를 제거한 후 고무 마개          에 바늘 끝을 꽂는다(주사기 바늘을 구부려서는 안된다). 주사기를 양 손바닥 사이          에 놓고 굴려서 항응고제와 잘 섞이도록 한다. 주사기에 바코드를 부착하고 채혈          시간을 기록한다. 검사가 바로 시행되도록 하고 검사가 5분 이상 지연될 경우              1~5 ℃에 보관한다(5분 이상 실온에 보관할 경우 혈액가스, pH, 혈당 수치가 영향          을 받으며, 냉장 보관 시 2시간 정도 검사 결과가 유효하다).
+</code></pre>
+<ol start="5">
+<li>
+<p>동맥혈 채취 시 발생할 수 있는 부작용
+천자 부위에 드레싱을 하고 5~10분간 압박하여 천자 부위에서 출혈이 되지 않게 한다.     출혈 경향이 있거나 항응고제를 복용하는 대상자라면 더 오래 동안 압박한다. 요골동맥을    천자하여 채혈할 때 손의 동맥 순환을 차단할 가능성이 있다. 그러므로 요골동맥을 천자    하기 전에 척골동맥을 통한 손의 측부 순환을 파악하는 것이 중요하다. 이때 사용되는 검    사법이 Allen test이다(동맥혈 채취 시 혈종, 동맥혈색전의 증상이 나타날 수 있으므로 주    의해야 한다).</p>
+</li>
+<li>
+<p>바코드가 부착되지 않은 검체를 다른 용기로 분주하여 사용하는 경우에는 환자 인적       사항을 철저히 확인하고 용기에 바코드를 재출력하여 붙인다.
+(1) 검체의 mixup, mislabeling 방지법 및 확인 방법
+채혈 시 mislabeling을 막기 위해 한 환자의 채혈을 마치고 정리된 후 다음 환자를         채혈 한다.</p>
+</li>
+</ol>
+<p>(2) 검체가 부족하여 동일 시간대 다른 검사를 위해 채혈된 검체를 사용하여야 할 경          우 (검체의 종류가 동일한 경우)는 전산조회 후 위의 검체 확인법으로 환자의 등록번       호, 이름, 접수일, 검체번호 등을 확인하여 잘못 mixup되는 것을 막는다.</p>
+<p>(3) Mixup이나 mislabeling된 검체는 delta check, panic value로 발견될 수 있으며             recheck, ABO grouping, resamplling하여 확인한다.</p>
+<p>(4) 환자의 원래 검체로부터 일정량을 분리할 경우  그 검체가 해당 환자의 것인지를          확인하며 barcode를 재출력하여 분리된 검체에 부착한다.</p>
+<p>(5) ABGA 검체는 채혈된 heparin syringe에 직접 바코드가 붙어 있어야 한다.</p>
+<p>(6) 바코드를 붙일 수 없는 현장실시 glucose 검사는 직접 환자의 정보를 확인 후 검사한       다.</p>
+<ol start="7">
+<li>
+<p>검사 지연 시 혈당검사는 혈청분리를 하지 않고 방치 시 시간당 7%씩 감소하므로 부득     이하게 지체되는 경우에는 반드시 혈청분리한 후 냉장 보관한다.</p>
+</li>
+<li>
+<p>혈액 가스검사를 10분 이내 검사하지 못할 경우 얼음주머니에 담아 냉장 보관하여 산소    의 소모를 막아야 하며 1시간 이내 검사를 시행한다.
+(1) 혈액가스 검사를 응급으로 해야 하는 이유</p>
+<ul>
+<li>채혈 후 15분 이내 검사하는 것이 원칙</li>
+<li>세포 대사 활동을 최소화하여 최고의 정확한 결과를 얻기 위함</li>
+<li>시간이 경과할수록 pO2 감소, pCO2 증가</li>
+</ul>
+</li>
+</ol>
+<p>(2) 전해질 결과에 영향을 주는 요인
+- EDTA등 기타 항응고제의 사용 불가 : pH , Na+, K+, Ca++ ,Cl- ,Hct 영향
+- 특정 약물의 사용은 Cl-의 수치에 영향
+- 용혈된 혈액은 K+의 수치에 영향<br>
+- 과량의 헤파린 사용은 Ca++ 수치에 영향
+- 백혈구의 수치가 높을 때 Hct의 동반 상승
+- Hct는 체내 과도한 변화의 protein에 영향을 받는다.
+9) 혈액 가스 검체는 결과 verify까지 보관 후 폐기한다.</p>
+<ol start="10">
+<li>부적합 검체의 기준
+(1) 바코드 혹은 인적사항이 부착되지 않거나 환자확인을 할 수 없는 검체</li>
+</ol>
+<p>(2) Clot된 검체</p>
+<p>(3) 검체량이 부족한 검체</p>
+<p>(4) 부적절한 용기에 채취된 경우</p>
+<p>(5) VBGA검체(진료과의 요구시 검사시행)</p>
+<ol start="11">
+<li>부적합 검체의 처리 지침
+(1) 부적합 검체로 판단되면 의뢰 의사에게 즉시 확인하고 재채혈을 요구하거나 그대로       검사를 원하는 경우 검체 상태를 명시 또는 결과해석에 미치는 영향을 기술하여 함         께 보고한다.</li>
+</ol>
+<p>(2) 부적합 검체에 대해서는 부적합 이유와 처리과정 등을 주치의에게 즉시 보고하도록        한다.</p>
+<p>(3) 항응고제 처리 시 주의사항: 헤파린의 과량 사용은 pH, pCO2, pO2, Hb의 결과에 영       향을 미친다.</p>
+<ol start="3">
+<li>검사자의 안전수칙</li>
+</ol>
+<p>진단검사의학과는 병원감염과 관련된 특수한 분야로 직원들은 검체의 채취, 수송, 조        작, 분석 과정 등에서 감염성 물질에 노출될 위험이 크다. 따라서 이러한 과정에서 야       기될 수 있는 감염원으로부터의 노출을 최소화하여 환자와 감염으로부터 예방, 보호해      야 한다.</p>
+<ol>
+<li>일반적인 지침
+(1) 검사실 내 환경을 항상 청결하게 유지하며, 감염되었거나 감염이 의심되는 물질은           멸균 또는 소독한다.</li>
+</ol>
+<p>(2) 환자로부터 직원이 감염되거나 환자간의 교차 감염을 방지하기 위해서 채혈자는 채        혈 규정을, 검체취급자는 검체취급 규정을 엄수한다.</p>
+<p>(3) 검사물을 처리하는 지역에서는 식사, 흡연, 화장 등을 하지 않는다.</p>
+<p>(4) 식품, 음료 등을 화학약품, 시약, 생물학적 재료 등과 같은 냉장고에 넣지 않는다.</p>
+<p>(5) 검체를 취급하고 장갑을 벗은 후 검사실을 떠나기 전에는 반드시 손을 씻는다.</p>
+<p>(6) 검사실 내의 가구는 튼튼하고 닦기 쉬운 것이어야 한다.</p>
+<p>(7) 검체를 처리하는 동안 입었던 특수복을 일과 중이나 일과가 끝난 후 검사실 밖으로
+나갈 때는 겉에 Lab 가운을 입는다.</p>
+<p>(8) 입으로 피펫(Pipet)을 빠는 것은 금지되며 안전한 기구를 사용해야 한다.</p>
+<p>(9) 검체 과정에 따라 적절한 보호구를 착용해야 한다.
+① 모든 혈액 및 체액을 다룰 때에는 장갑을 착용하고 장갑을 벗은 후에는 손위생을           시행한다.<br>
+② 장갑을 착용한 채 검사실 밖으로 나가지 않도록 하고 1회용 장갑을 씻거나 재사용          하지 않는다.</p>
+<p>(10) 검사 중 다루게 되는 날카로운 기구에 손상을 줄이기 위하여 손으로 조작하는 행위         를 금하고 손상된 유리기구 등은 도구를 이용하여 제거, 폐기한다.</p>
+<p>(11) 감염성 또는 감염가능성이 있다고 판단되는 검체에 주사침 자상을 입었을 경우에는         흐르는 물에 혈액이 흐르도록 한 후 소독제로 소독한다. 근무 중 감염노출 체계에          의해 처치를 받고 필요시 추후 관리를 받는다.</p>
+<p>(12) 점막이나 피부에 접촉한 경우는 흐르는 물에 충분히 씻어내고, 눈에 튈 경우 Eye
+wash station에서 생리식염수로 충분히 씻어낸다.</p>
+<p>(13) 주사침 자상 등 감염원에 노출된 직원은 노출상황에 대해 부서장에게 보고한다.</p>
+<p>(14) 검사실 의료폐기물 처리
+① 의료폐기물 관리지침에 따라 처리한다.
+② 미생물검사용 검체와 오염된 배지 등의 의료폐기물은 멸균처리(Autoclave)한 후에          다른 폐기물과 함께 처리한다.
+③ 사용한 바늘, 칼날, 기타 날카로운 물질은 지정된 주사침통에 넣어 폐기한다.
+④ 폐기물 처리 시에는 장갑을 착용한다.</p>
+<ol start="2">
+<li>검사업무용 특수복
+(1) 검사실 내 검사 업무에 종사하는 모든 직원은 특수복을 착용한다.</li>
+</ol>
+<p>(2) 검사업무용 특수복은 검사업무 이외의 목적으로 검사실 밖으로 나가는 경우 착용하지        않는다.
+➀ 검사실 밖으로 이동하는 경우 검사 업무용 Lab 가운을 착용한다.
+(식사, 행정부서 방문 등)
+② 검사 업무 중 신발은 앞부분이 막힌 것으로 착용한다.</p>
+<ol start="3">
+<li>장갑
+(1) 검체분리를 목적으로 원심분리 시, 검체 분주하고 검사 수행 시 장갑을 착용한다.</li>
+</ol>
+<p>(2) 미생물 검사실과 결핵균 검사실에서 검체와 균주를 다루고 있는 경우 착용한다.</p>
+<ol start="4">
+<li>
+<p>마스크
+결핵균 검사 시 N95 마스크를 착용한다.</p>
+</li>
+<li>
+<p>안보호대
+검체의 뚜껑을 개봉하는 업무 중 착용한다.(단, 자동화 장비에서 자동으로 뚜껑을 개봉하    는 경우 착용할 필요가 없다)</p>
+</li>
+<li>
+<p>사고보고는 안전사고 보고체계에 따라 진단검사의학 팀장 경유하여 PI실에 제출한다.</p>
+</li>
+<li>
+<p>검체 취급 시 주의사항
+(1) 검체 취급 전․ 후 반드시 손을 씻는다.</p>
+</li>
+</ol>
+<p>(2) 모든 혈액, 체액, 혈청 등은 감염의 가능성이 있는 것으로 간주하여 조심히 다루고         공기 감염 예방을 위하여 분리 과정이나 분석 시를 제외하고는 뚜껑을 덮는다.
+(3) 병원성 진균, 세균, 결핵균 및 바이러스 배양 등을 위한 검체는 생물학적 안전상            자(Bio-safety cabinet) 안에서 실시한다.</p>
+<p>(4) 결핵균 배양용 검체를 다루다가 엎질렀거나, 배양용기가 손상되었을 때는 종이 타올        로 덮고 유효염소량 5.000ppm 차아염소산나트륨(락스) 용액을 부어 30분 이상 적셔        두며, 자외선 등(UV lamp)을 켜둔 채 24시간을 봉쇄하고 모든 직원은 방을 떠나 있        게 한다. 노출된 직원은 감염관리실에 보고한다.</p>
+<p>(5) 혈액이나 체액 또는 감염성 물질을 엎질렀을 때는 Spill kit을 이용하여 다음과 같           이 처리한다.
+① Spill kit와 락스를 준비한다.
+② 장갑과 Shield mask를 착용하고 비닐봉지는 벌려 놓는다.
+③ 혈액이 쏟아진 표면을 종이타월로 흡수시켜 버린다.
+④ 소독제인 락스를 희석(계량컵을 사용하여 락스 50ml+물 450ml 희석)한다.
+⑤ 새 종이타올을 덮고 희석한 소독제를 붓고 1분간 기다린다.
+⑥ 흡수된 휴지를 비닐봉지에 넣고 장갑과 Shield mask를 벗어 비닐봉지에 담는다.
+⑦ 비닐봉지를 묶어 감염성 폐기물 전용용기에 버린다.
+⑧ 손을 씻는다.</p>
+<p>(6) 작업대는 매일 일과가 끝난 후 병원 내 규정에 따른 환경소독제로 오염을 제거한다.</p>
+<p>(7) 환자의 검체는 규정에 따라 고압멸균한 후 폐기한다.</p>
+<p>(8) 검체를 수송하는 상자에 검사물이 엎질렀으면, 장갑 착용 후 알코올로 닦아낸다.</p>
+<ol start="8">
+<li>현장검사 장비 관리
+(1) 검체 취급 전․ 후 반드시 손을 씻는다.</li>
+</ol>
+<p>(2) ABGA 검사장비, 바로잰 HXpert 등 현장검사 기기는 휴대하기도 하고 이동하여 사용       하므로 사용 전‧후 수시로 일산차병원 소독제 사용에 따른 소독지침을 준수하여 소독       한 후 유지 보관 한다.</p>
+<p>(3) 현장검사 시 사용하는 일회용 채혈침은 한 환자에게만 사용하도록 한다.</p>
+<ol start="9">
+<li>일산병원 소독지침</li>
+</ol>
+<p>종류
+소독제
+소독방법
+체온계, 청진계,
+혈압계 등
+알콜솜 또는
+64배 희석 쿼트</p>
+<p>체온계(좁은 면적) 등은 매 환자 사용 후 알콜솜을 사용하여
+표면소독, 혈압계 커프 (넓은 면적)등은 환경소독제 사용하여
+표면 소독한다.</p>
+<p>의료기기 및<br>
+장비 소독
+64배 희석 쿼트
+또는 Clinell
+의료기기 및 장비는 사용 전 사용 후에  64배 희석
+쿼트를 사용하여 표면을 닦아 소독한다.</p>
+<ol start="4">
+<li>
+<p>감염관리</p>
+<p>모든 환자의 혈액이나 체액은 위험한 것으로 간주하고 진료과정에서 표준주의를 준수      한다. 감염성 질환이 있거나 의심되는 환자는 전파방법을 고려하여 전파 양식별 주의       를 추가로 적용한다.</p>
+</li>
+</ol>
+<ol>
+<li>손 위생 및 보호구의 사용
+(1) 손 위생: 모든 환자를 만지기 전과 후 손 위생을 시행하여 눈에 보이는 오염이나 혈                 액 및 체액이 묻은 경우에는 물과 소독비누로 손을 씻어야 한다.</li>
+</ol>
+<p>(2) 장갑: 혈액이나 체액이 손에 묻을 것이 예상되면 반드시 장갑을 끼고 장갑을 벗은 후             에는 즉시 손 위생을 시행한다.</p>
+<p>(3) 가운: 피부나 옷이 혈액 및 체액에 오염될 가능성이 있으면 가운을 입는다.</p>
+<p>(4) 마스크: 비말전파가 가능한 환자에게 1m 이내로 접근할 때는 마스크를 쓰고 혈액이                나 체액이 튈 것이 예상되면 보안경(shield mask)을 함께 착용한다. 공기매개               감염이 의심되거나 확진된 환자의 병실을 출입할 경우는 N95 마스크를 사용               한다.</p>
+<p>(5) 응급소생술이 필요하리라 예상되는 곳에는 Ambu-bag과 mouth piece를 준비해 놓는       다.</p>
+<p>(6) 피부염이나 피부에 상처가 있는 의료인은 환자를 직접 만지거나 환자의 검체를 맨손       으로 접촉하지 않는다.</p>
+<p>(7) 모든 개인보호구는 언제든지 사용하기 쉬운 위치에 비치하며, 올바른 방법으로 사용
+한다.</p>
+<ol start="2">
+<li>채혈 시 주의 사항
+[채혈과정 모식도]</li>
+</ol>
+<p>채혈물품 준비
+(1회용 주사기 준비)
+손씻 기등 ,손위생
+Alcohol 소독
+지혈대착용(최대1분)</p>
+<p>천자할 혈관을 고정
+바늘삽입 시 15~30°유지 tube삽입하여 혈액채취 후 즉시 전도혼합
+지혈대 제거 후 주사기제거 후 채혈부위 압박
+사용한 바늘 버리기</p>
+<p>(1) 채혈자 준비사항
+① 환자마다 알코올성 손소독제로 손 위생을 철저히 하고, 필요시 장갑 및 마스크를           착용 한다.
+② 환자상태를 주의 깊게 관찰한다.<br>
+③ 환자확인[이름과 주민등록번호 앞자리]등 두 개 이상의 정보로 반드시 확인한다.
+④ 공복(Fasting), 복용 금지(중지) 여부가 필요한 환자는 반드시 확인한다.</p>
+<p>(2) 채혈 과정
+① 혈관이 고정되도록 채혈자는 집게손가락과 중지 또는 엄지손가락과 집게손가락을           사용해서 혈관을 당기듯이 하며 살짝 눌러 혈관을 고정시키며 바늘을 삽입한다.            (찌르는 부위에서 2~3cm 아래)<br>
+② 채혈하기 전 지혈대(Tourniquet)를 풀어서 채혈한다.
+③ 용혈의 원인
+㉠ 검체용기의 진공력에 비해 너무 가는 바늘 사용 시.
+㉡ 채혈 후 검체용기를 너무 세게 흔들었을 경우.
+㉢ Hematoma로부터 혈액을 채취 시.
+㉣ 완전히 응고되기 전에 혈액검체를 원심분리 했을 때.
+㉤ 정맥천자 시 외상을 가하여 얻은 검체 확보 시.</p>
+<ol start="3">
+<li>주사기를 이용한 정맥천자
+(1) 일반적으로 21G, 23G 바늘이 연결되어 있는 일회용 주사기를 사용한다.
+(현장검사 채혈 시 : 일회용 채혈침은 한 환자에게만 사용)
+(2) 채혈하고자 하는 부위에서 3~5cm아래쪽을 누르며 팽팽히 당겨 고정시켜 찌르기 쉽게      하고 환자의 불편도 감소시킨다.</li>
+</ol>
+<p>(3) 알콜이 건조된 후 바늘의 사면을 위로하여 15°정도로 찌른다.</p>
+<p>(4) 일반혈관의 경우 주사기에 혈류가 유입되기 시작하면 곧바로 지혈대를 풀고, 환자의        주먹을 펴도록 한다.</p>
+<p>(5) 주사기로부터 vacutainer 용기로 검체를 분배 시에는 needle을 제거하고, 검체용기         의 마개를 열고 관 벽을 따라 흘려서 필요 량 만큼 분주한다.<br>
+4) 진공 채혈관을 이용한 정맥천자
+(1) 녹색 바늘 마개를 잡고 회색마개를 돌려 제거하면 Holder속으로 들어갈 고무로 피막       된 짧은 바늘 (1회용) 바늘이 나타나는데, Holder의 좁은 쪽 입구로 돌려 끼워 넣어         움직이지 않도록 고정시킨다.</p>
+<p>(2) 주사바늘 쪽 녹색마개를 제거 후 환자혈관에 바늘을 삽입한다.</p>
+<p>(3) 한손으로 Holder를 지지한 후 엄지손가락으로 진공 채혈관을 작은 바늘 쪽으로 밀어      넣어 용기마개가 바늘에 의해 뚫림과 동시에 혈액이 채혈관 안으로 채취된다.</p>
+<p>(4) 진공채혈관은 적당한 압력으로 내압이 조정되어 일정량의 혈액만 채취되므로 일정량       혈액이 채취되면 Adapter로부터 분리하면 된다.</p>
+<p>(5) 연속채혈 시 진공채혈관만 Holder속으로 밀어주면 된다.</p>
+<p>(6) 채혈관은 반드시 labeling 되어 있는 것을 사용하여야 하며 채혈되는 동안 매 검체        용기마다 이름을 확인한다.</p>
+<ol start="5">
+<li>
+<p>Butterfly Needle의 일반적 사용
+: 소아, 노인, 암환자, 화상환자 등 찌그러지거나 가느다란 혈관, 손등 천자 시 사용한다.</p>
+</li>
+<li>
+<p>펜형 손가락채혈 도구 사용
+: 펜형 손가락채혈 도구를 사용할 때는 채혈침은 1회 사용한다. 채혈침을 교체하지 않거나     소독이 불완전한 경우 환자간 감염의 가능성이 있으므로 철저한 감염 예방 조치가 필요     하다.
+(1) 펜형 채혈도구에 채혈침을 장착한다.
+(2) 알콜솜으로 환자의 손가락을 소독 후 채혈침을 삽입한다.
+(3) 검사 실시 후 알콜솜으로 지혈하고 채혈침을 전용 폐기물통에 버린다.
+(4) 매 사용 후 채혈도구는 소독한다.</p>
+</li>
+<li>
+<p>지혈(After Care)
+(1) 먼저 알코올 솜을 대고, 주사바늘을 천천히 뺀 후, 알코올 솜으로 채혈부위를 눌러         준다.</p>
+</li>
+</ol>
+<p>(2) 채혈 부위는 피가 멈출 때까지 문지르지 말고 5분정도 꼭 누르도록 한다.</p>
+<p>(3) 지혈이 되지 않으면 밴드를 붙여 좀 더 압박을 한다.
+(4) 검체용기 : 유효기간을 반드시 확인 후 검체 채취용기 순으로 채혈한다.
+혈액배양용 배지 및 채혈용기는 유효기간 내에 사용하며 유효기간 경과 시                  폐기 처분한다.
+8) 채혈 후 처리
+(1) Needle Holder 녹색버튼을 누르면 자동으로 진공채혈바늘이 분리되어 안전 하게           바늘을 제거할 수 있다.</p>
+<p>(2) 채혈 후 일반주사바늘은 마개를 다시 막지 않고 바로 주사기에서 주사 바늘을 의           료 폐기물용기(손상성) 홀더에서 분리해 버린다.</p>
+<p>(3) 천자 시 사용한 나머지 재료(솜, 주사기 등)의 처리는 즉시 의료폐기물 용기의 종류         에 맞게 버린다.</p>
+<ol start="9">
+<li>검체 채취 시 일반 주의 사항
+(1) 검사의뢰 시 검사종목, 검체 종류, 응급 여부 등의 검사처방을 입력하고 채혈 희            망시간 및 검사의뢰 시 필요한 환자정보를 Remark란에 입력하여야 한다.</li>
+</ol>
+<p>(2) 검체에는 등록번호, 성별, 성명, 연령, 진료과, 발행일자가 기입된 표지(Barcord)              가 있어야 하며, 위의 내용 이외에도 검사항목, 검체 종류가 정확히 marking되어야         한다.
+(3) 혈액은행 검체는 처방스티커가 붙어져 있는 검체에 위의 표기 이외에도 채혈일자,           채혈자와 직번이 기록되어야 한다.</p>
+<p>(4) 미생물 배양 검체의 경우 각 용기에 위의 표기된 내용의 바코드 및 정확한 검체명          이 표시되어야 하며 무균적으로 채취되어야 한다.</p>
+<p>(5) 측정 전 오차를 줄이기 위해 어떤 검사는 환자 상태나 검체 채취시기에 주의를 요한       다.</p>
+<ol start="10">
+<li>주사침 찔림 예방 지침
+(1) 사용한 바늘, 수술칼, 날카로운 기구는 조심히 다룬다.</li>
+</ol>
+<p>(2) 사용한 바늘은 다시 뚜껑을 씌우거나, 구부리거나, 자르지 말고 그대로 주사바늘통에       즉시 버린다.</p>
+<p>(3) 주사바늘통은 2/3이상 차지 않도록 한다.</p>
+<p>(4) 사용기간이 완료된 주사바늘통은 뚜껑을 완전히 밀폐하여 수거한다.</p>
+<p>(5) 부득이 바늘 뚜껑을 씌워야 할 경우는 한 손으로 조작하여 바늘 뚜껑을 주사바늘에
+씌운 후 닫는다.</p>
+<ol start="5">
+<li>손 위생(Hand Hygiene)</li>
+</ol>
+<p>가장 중요하고 기본적인 예방 및 관리 방법이다. 모든 절차는 손위생으로 시작하여 손위    생으로 끝내는 것이 중요하다.</p>
+<ol>
+<li>기본 원칙
+(1) 손위생(Hand Hygiene)은 손씻기(Hand washing), 손소독제 마찰(Antiseptic hand rub)
+또는 외과적 손 소독(Surgical hand antisepsis)을 포함하는 개념이다.</li>
+</ol>
+<p>(2) 눈에 보이는 오염이 있는 경우는 반드시 흐르는 물과 비누(혹은 소독비누)로 마찰하        여 손을 씻는다.</p>
+<p>(3) 눈에 보이는 오염이 없는 경우라면 손 씻기가 어려울 경우 손소독제 사용으로 대체할
+수 있다.</p>
+<p>(4) 소독제가 함유된 물휴지는 일반비누와 물로 손 씻는 것과 같은 정도로만 간주한다.</p>
+<p>(5) Bacillus anthracis, Clostridium difficile에 오염되었거나 오염이 의심되는 경우는            일반비누 혹은 소독비누와 물로 마찰을 이용하여 손을 문지른 후 물로 헹군다.</p>
+<p>(6) 장갑은 손 위생을 대신할 수 없으므로 멸균장갑 착용 직전이나 장갑을 벗은 직후 손
+위생을 시행한다.</p>
+<p>(7) 손 위생이 필요한 상황: 다음의 경우 물과 비누를 이용하여 손을 씻거나 알코올 손         소독제를 사용한다.</p>
+<pre><code>① 환자 접촉 전, 후
+  ㉠ 지지적 행동 : 악수, 쓰다듬기 등  가벼운 접촉
+  ㉡ 직접접촉 : 이동시 보조, 체위변경, 침상목욕, 등 마사지, 물리치료
+  ㉢ 신체사정 : 맥박, 혈압측정, 청진, 타진 및 촉진
+
+② 무균적 시술 전
+  ㉠ 점막접촉 : 구강간호, 흡인
+  ㉡ 피부 병변과 접촉 : 상처간호, 드레싱
+  ㉢ 침습기구의 삽입 및 관리 : 중심정맥관, 유치도뇨관 등 침습적 기구 삽입, 모든 형                                   태의 주사 투약, 혈관계 또는 배액 폐쇄 시스템 분리 시
+  ㉣ 투약 및 드레싱 준비
+
+③ 체액 및 분비물 접촉 후
+  ㉠ 점막 또는 피부 병변 접촉 후(무균적 시술 시 항목과 동일)
+  ㉡ 혈액 및 체액 체취, 배액 시스템 분리, 기관 삽관 및 발관
+  ㉢ 소변, 대변, 구토물 정리
+  ㉣ 혈액 및 체액이 묻은 의료기구 세척 및 정리
+
+④ 환자 주변 환경 접촉 후
+  ㉠ 침상정리, 린넨 교환, 침상주변 닦기
+  ㉡ 의료기구 접촉, 모니터 알람 끄기
+  ㉢ 침상난간 접촉
+</code></pre>
+<p>2). 손 위생 방법
+(1) 손 씻기 방법
+① 알코올 손소독제를 사용할 때는, 한 손바닥에 소독제를 덜은 후 양손으로 소독제가
+마를 때까지 손과 손가락 표면을 모두 문지른다. 사용량은 일반적으로 엄지손톱만          큼의 분량이며 제조회사의 권고사항을 따른다.
+② 물과 비누를 사용할 때는 물을 적시고 제조회사에서 요구하는 권고 량을 묻힌 후
+손가락과 손표면 모두를 최소한 15초 이상 강하게 문지른다. 물로 헹군 후 1회용
+타월로 손을 완전히 건조시킨다.
+③ 뜨거운 물을 반복적으로 사용 시 피부염이 발생 할 수 있으므로 뜨거운 물은 사용
+하지 않는다.
+④ 손은 씻는 동안 시계는 벗어 놓거나 팔위로 올린다. 반지와 손가락 사이를 주의 하         여 씻는다.
+⑤ 손가락 끝과 손가락 사이, 엄지손가락 등은 주의하여 마찰한다.
+⑥ 손의 건조 시 종이타월을 사용한다. 손으로 돌려서 잠그는 수도꼭지를 돌릴 때는
+종이타월을 이용하여 닦은 손이 수도꼭지와 직접 접촉하지 않도록 한다.
+⑦ 피부 보호를 위해 하루 한번 이상 주기적으로 로션을 사용한다.</p>
+<p>제 3 장 정도관리</p>
+<ol>
+<li>외부정도관리</li>
+</ol>
+<p>외부 정도관리는 대한임상검사정도관리협회의 “외부 신빙도 조사”에 참여하여 수행하고 있다. “외부 신빙도 조사”는 동일한 검체로 산출된 검사 결과를 검사실간 비교함으로써 각 검사실이 자신들이 산출한 검사결과의 정확도를 확인 할 수 있다. 검사실 내부에만 국한되어 정도관리를 하게 되면 자칫 환자 검사 결과에 대한 내부적인 오류에 빠져 큰 오류를 발생 시킬 수 있다. 이를 위하여 타 검사실과의 비교 분석을 통해 검사결과의 평형성을 이루는 것이 중요하다.</p>
+<ol>
+<li>검체 처리 원칙 및 방법
+(1) 외부정도관리 검체는 환자검체와 같은 방법으로 검사해야한다.</li>
+</ol>
+<p>(2) 외부정도관리 검체는 일상적인 검사과정 중에 포함되어 진행되어야 하며, 반드시 실제      검사업무를 담당하는 사람이 검사해야 한다.</p>
+<p>(3) 외부정도관리 검체는 절대 반복 검사를 시행해서는 안 되고, 분석결과를 보고하기 이전      에는 외부 검사실 간의 어떠한 형태의 의사 교환이나 검체 교환이 있어서는 안 된다.</p>
+<p>(4) 외부정도관리 검사는 정도관리 물질 도착 후 외부정도관리 물질 관리 대장을 작성한       후 지정된 시간 내에 검사한다.</p>
+<p>(5) 각 종목 별 이상이 없을 경우, 부문별 정도관리 기록지에 기록하고 병원명, 기관 고유      번호, 검체번호, 검체접수일, 검사실시일을 기입하여 담당 전문의에게 보고한다.</p>
+<p>(6) 결재 완료된 결과지는 신빙도 조사사업 site http://eqas.keqas.org 에서 해당 결과를       입력하고 Cross check하여 잘못 입력된 결과가 있는지 검토한다.</p>
+<p>(7) 마지막으로 입력, 결재 완료된 결과지는 최초 검사 결과지 원본과 함께 보관하고 검사      가 끝난 정도관리 물질은 평가결과지가 올 때까지 정해진 조건에 보관하여 평가결과를      다시 재확인해야 할 필요가 있을 경우에는 언제든지 재검을 실시할 수 있도록 한다.</p>
+<ol start="2">
+<li>
+<p>분석결과 검토
+(1) 외부정도관리 분석 보고서가 도착하면 책임기사는 그 결과를 분석하여 1달 이내에       외부정도관리 대책기록서를 작성하고, 담당전문의는 보고서 및 분석결과를 적극적으로      검토 및 대책을 수립하여 그 대책이 적절하게 시행되는지 확인하여야 한다.
+(2) 평가결과를 통보받고 평가 및 문제해결 조치를 기록하고 이상이 없는 경우라도 이         를 검토한 기록을 남긴다.</p>
+</li>
+<li>
+<p>국내 정도관리 프로그램 (대한임상검사정도관리협회 : 신빙도 조사사업)</p>
+</li>
+</ol>
+<p>프로그램 명
+Trial 회수(년)
+검 사 항 목
+ID
+평 가 기 준
+Glucose 현장검사
+2회
+Glucose
+qa285910
+SDI ≤ 2.00
+혈액가스현장검사
+2회
+pH, pCO2, pO2
+qa2859100
+SDI ≤ 2.00</p>
+<p>&lt;표-1 외부 정도관리 실시 일정 및 검사 종목&gt;</p>
+<p>(1) 결과의 해석
+① SDI(Standard Deviation Index) - 표준 편차 지수법
+SDI는 참여 검사실의 검사 결과 치에서 참여검사실의 표준편차로 나누어주어 참여검        사실의 참고치에 얼마나 근접하는 가를 평가하는 방법이다.</p>
+<pre><code>② 기준 분류 : 검사 방법이 동일한 집단의 분류
+  peer 그룹의 수가 적은 외부정도관리 프로그램은 기준 분류를 기준으로 할 수도 있        다. 평가 기준은 세 분류 평가 기준과 동일하다.
+③ 세 분류 : 검사 장비가 동일한 집단의 분류
+</code></pre>
+<p>평가 기준
+평    가
+한 검체에서 SDI &gt; ± 2.0
+수정 요망
+두 검체 이상 &amp; 두 번 연속 같은 방향 SDI &gt; ± 1.5</p>
+<pre><code>   [표-8] SDI 평가 기준(세 분류)
+    Reference :  대한 정도관리 협회
+④ 정성 검사의 경우 : 두 결과는 일치하여야 한다.
+</code></pre>
+<p>(2) 결과에 대한 대책
+부적합 평가 결과의 원인을 찾기 위해서는 결과지를 분석하고 재검을 시행할 필요가 있      으므로, 검사 결과지와 장비 출력물, 외부정도관리 검체를 적절한 방법으로 보관해 두어      야 한다. 아래의 점검 사항을 기초로 한 check list를 작성하고 점검 상에 문제가 발견      되지 않았다면 random error로 간주하고 재검을 시행하여 random error임을 확인한다.</p>
+<pre><code>① Look for clerical errors :
+  평가 결과지의 결과와 제출한 결과가 일치하는지 살펴본다. 또한 장비, 시약, kit, 결과        단위 등이 올바르게 기재되었는지 확인한다.
+② Investigate possible specimen handling problem :
+  도착 당시 검체의 조건과 보관 조건, 검체 조작 등에 이상이 없었는지 확인한다. 예를        들면 용혈 또는 미생물 배양 검체에 이상이 없었는지 확인하고, 이상이 있는 경우 정        도관리 물질 제공자에게 보고한다.
+③ Investigate possible operator error :
+  검체 조작 과정을 점검한다. 희석오류가 가장 흔히 발생되는 오류인데, 검사자가 결         과에 희석배수를 곱하지 않았거나, 결과 입력자가 검사자와 다른 경우, 희석배수를 잘        못 계산한 경우, 장비에서 자동적으로 희석배수를 보정하는 경우가 흔히 발생될 수         있는 예이다.
+④ Review reagent logs, quality control logs, and calibration records :
+  사용한 시약, 희석액, buffer 등의 유효기간과 시약 개봉 후 안정기간을 점검한다. 냉        장고와 실내온도 기록을 점검하고, 배양기의 온도, 가스 농도, 습도 등이 허용범위 이        내에 들었는지 확인한다. 장비의 calibration 및 내부정도관리 물질의 결과와 허용범위        를 점검하고, shift 나 trend가 없었는지 확인한다.
+⑤ Review instrument maintenance records :
+  장비 점검 기록지를 확인하여 결과에 영향을 미칠만한 이상이나 변동이 없었는지 확        인한다. 특히 외부정도관리 물질 측정 당시에는 간과되었던 장비의 이상이 측정 이후        에 발견되지 않았는지 확인하고 의심되는 경우 장비 회사에 문의 한다.
+</code></pre>
+<p>(3) 외부정도관리의 종합 검토
+① 외부정도관리 검체 대장
+외부정도관리 검체를 접수와 취급에 대한 확인을 점검할 수 있도록 상세히 기록한          다.
+② 외부정도관리 대책 기록서
+외부정도관리 결과가 도착하면 이에 대한 종합 검토를 실시한다.
+㉠ SDI Chart : SDI 결과의 연속성을 확인한다.
+㉡ 외부정도관리 이상결과 체크 리스트를 하나씩 확인하며 자료를 첨부하여 어떠한            Error에서 발생한 이상인지를 확인 할 수 있도록 한다.</p>
+<ol start="4">
+<li>기타 프로그램
+외부정도관리 프로그램에 등록되지 않은 검사 항목에 대해서는 다른 검사실 간에 검체를    교환하여 검사 결과의 비교 및 정확도와 신뢰도 평가를 위하여 년 1회 이상 비교 검       사를 실시한다. 평가 결과는 &quot;Proficiency Test Result Sheet&quot;에 기록하여 보관한다.</li>
+</ol>
+<p>(1) 검사실 간 비교는 동일한 검사 방법 및 결과 보고 단위를 사용하는 기관을 선정하도록      한다.</p>
+<p>(2) 검체의 선정 방법
+① 정량 검사의 경우 5검체 이상을 선정하도록 한다. 검체의 수는 부문별 특성을 고려하        여 변경 할 수 있다. 검체는 되도록 저농도와 고농도를 적절하게 혼합하여 선정 하도        록 한다.
+② 정성 검사의 경우 Neg, Pos의 검체를 선정하여 2 검체 이상 선정하도록 한다.
+③ 약양성을 보고하는 검사종목은 약양성 검체를 포함 하여야 한다.</p>
+<p>(3) 검사 종목의 선정 방법
+① 외부정도관리를 실시하지 않는 검사 종목은 반드시 검사실간 외부정도관리를 실시하         여야 한다.
+② 검사실 간 비교가 불가능한 경우에는 병원 내에서 시행하는 다른 방법과 비교,             assayed material과 비교, 지역 풀(regional pools)을 이용하는 방법, 의무기록을 검토         하여 임상적 타당성을 검증하는 방법, 기타 적절하고 문서화된 방법을 전문의 주관         하에 시행하도록 한다.
+③ 환자가 직접 내원해야 하는 검사 종목은 제외한다.
+④ Ammonia, ethanol 등은 검체의 특성 상 검사실간 비교 검사가 불가능하므로 평가          대상에서 제외한다.</p>
+<p>(4) 평가 기준
+① 정성 검사의 경우 : 두 결과는 일치하여야 한다.
+② 정량 검사의 경우 : Bias%</p>
+<pre><code>  세부 Bias%에 대한 기준은 각 부문별 정도관리 지침서를 참고 한다.
+</code></pre>
+<p>(5) 평가기준을 초과 시에는 책임기사는 그 결과를 분석하여 보고서를 작성하고, 담당전         문의는 보고서 및 분석결과를 적극적으로 검토 및 대책을 수립하여 그 대책이 적절하       게 시행되는지 확인하여야 한다.</p>
+<ol start="2">
+<li>내부 정도관리 (Quality Control)</li>
+</ol>
+<p>현장검사의 QC program은 정도관리 계획에 따라 시행되는데 그 내용에는 검체의 채취, 운반 및 보관, 검사과정에 필요한 시약, 각 검사의 정확성과 재현성을 확인하는 과정(control, calibrator), 검사실내의 각종 장비의 온도 점검, 장비에 대한 유지 점검 기록, 기계 작동 점검, 전기 안전 점검 등이 포함되도록 하여 검사 업무의 질을 높이는데 있다. 또한 보고 된 검사결과의 신뢰도를 보증하기 위해서 분석 전, 분석 중, 분석 후의 과정에서 발생될 수 있는 문제들의 오류를 예방하여 환자에게 정확한 검사 결과를 제공하도록 한다.</p>
+<ol>
+<li>지 침
+(1) 정도관리의 계획 수립 및 실천 방법은 책임기사에 의하여 이루어지며 승인 및 검          토는 진단검사의학팀장, 진단검사의학전문의가 한다.
+정도관리 물질의 사용이 가능한 모든 검사에서는 반드시 이를 이용하여 정도관리 실        시 한다.</li>
+</ol>
+<p>(2) 모든 검사에 대하여 환자 및 준비, 검체의 채취 및 표기, 보관, 이송조건, 검사 전까
+지의 보관 방법에 대한 사항의 정의, 기록된 지침서가 마련되어 있어야 한다.</p>
+<p>(3) 현장검사의 내부 정도관리는 최소한 1달에 한번은 질 관리 책임자의 검토가 있어야
+하며, 1달에 한번은 진단검사의학과 전문의의 검토 확인이 있어야 한다.</p>
+<p>(4) 모든 검사는 반드시 농도차가 있는 두 가지 이상의 물질을 사용하여 정도관리를 실        시한다.</p>
+<p>(5) 정도관리 물질은 환자 검체와 동일한 방법으로 검사한다.</p>
+<p>(6) 환자 검사 결과의 보고 시 정도관리 결과가 허용범위 내에 있음을 확인 후 보고하여
+야 하며 허용범위를 벗어난 경우 원인파악(장비점검, 시약확인 등) 후 Recalibration
+을 실시한 후 정도관리 물질을 측정하여 허용범위에 있음을 확인 후 보고를 하여야
+한다.</p>
+<p>(7) 결과보고 전, 후 심각한 사무적 오차, 분석오차 및 비정상적 검사결과를 최소화하기
+위해서 전산에 기록된 모든 검사의 결과는 필히 review를 하고 확인한 후 보고하는 검
+사실과 달리 현장검사의 결과보고는 검사시행과 동시에 결과 인터페이스 되어 자동 보
+고 된다. 결과 보고 시에는 delta, panic check 프로그램과 동시에 보고된다.</p>
+<pre><code>① 검사 전, 후 오류를 발견하였을 때(work list 또는 전산 확인 시) 담당 주치의 혹은          담당 간호사에게 즉시 알려 결과에 대한 상황 설명을 한 후 재검을 실시 후 보고 한         다.
+② 분석된 결과와 오류의 내용은 현장검사 질 관리 책임자 및 담당 전문의에게 보고          한다.
+③ 잘못된 결과를 발견하였을 때 
+  가. 수정된 결과는 담당 주치의에게 즉시 통보한다.
+  나. 전산 결과를 수정 통보한다. (수정 Verify 사용) 
+④ 위의 모든 사항 즉, 분석오차 및 사무오차 등은 전산 상으로 기록되어지며, 현장 
+   검사자는 이를 확인하고, 현장검사 질 관리 책임자 및 진단검사의학과 전문의에게 
+   보고되어야 한다.
+⑤ 상기의 모든 사항에 대하여 담당전문의는 이상이 발견되면 즉시 조치를 취하고, 기         록을 남기며 이 모든 과정을 적극적으로 관리하며 책임진다.
+⑥ 검사수행 시 방해물질에 의하여 검사결과를 신뢰할 수 없는 경우 검사실 검사결과와         비교 후 검사결과의 신뢰도를 확인한 후 보고한다.
+</code></pre>
+<p>(8) Personal Q.C
+개개인의 업무 능력에 따라 발생될 수 있는 실수를 줄이고, 책임감 있는 태도로 업무       에 임할 수 있도록 하는데 그 목적이 있다.
+① 담당업무 내용을 정확히 숙지한다.(Job description)
+② 지침서에 따라 업무를 수행한다.
+③ 기존 임상병리사와 신규 임상 병리사에 대한 지속적인 교육이 이루어져야 한다.
+④ 잘못이 일어난 과정상의 착오를 재검토하여 같은 실수가 재발생되지 않도록 한다.<br>
+⑤ 각 검사 방법이나 업무에 익숙하지 않은 상황에서 근무하는 것을 방지한다.
+⑥ 외부기관 및 자체에서 실시하는 정도관리 프로그램에 참가하여 총체적인 평가를            받는다.
+⑦ 인수인계를 철저히 한다.</p>
+<p>(9) 정성검사인 경우 양, 음성의 기준이 되는 CUT-OFF값을 처음 검사 시행과 매년 2           회 정도 확인하여야 한다.</p>
+<p>(10) Manual 검사종목은 시약 내 Control을 이용하여 Chart 작성한다.</p>
+<p>(11) 각 장비별로 매달 Q.C program을 이용하여 Chart 작성한다.
+① I-STAT POCT- 전월 mean값의 ±10% 이내의 결과로 비교 검토한다.
+② 바로잰 EXPERT plus- 전월 mean값의 ±10% 이내의 결과로 비교 검토한다.</p>
+<p>(12) 내장된 내부정도관리 시스템을 사용하므로 Individualized Quality Control Plan              Summary를 근거로 정도관리를 실시한다.</p>
+<ol start="2">
+<li>항목 별 Cal, Control, Parallel test, Q.C rule 적용은 다음과 같다.</li>
+</ol>
+<p>검사항목
+검사
+장비
+정도관리 물질
+실시 기간
+실시 조건
+허용범위
+Glucose
+바로잰 EXPERT plus
+Control 1,2 (low,High)
+1회/일
+검사시작 전
+/매일
+control Range
+Blood
+Gas
+I-STAT
+Liquid sol. QC I,II,II
+1회/월
+장비회사 학술부
+±2SD
+Internal Simulator QC
+(Electronic High, Low level )</p>
+<p>8시간</p>
+<p>자동설정
+PASS</p>
+<pre><code>① 바로잰 EXPERT plus (혈당측정)
+  - Control 1, Control 2 (1회/일) 검사 시작 전, 매일AM6:00시행하며 Control Range 
+   허용범위 내에 속함을 확인.
+  - 매월 1회 장비회사에서 기기 점검 실시하여 진단검사의학과에 제출한다. 
+  - 담당자는 월 1회 print로 출력하며 전월과 비교 검토 후 담당전문의의 서명을  
+    받는다.
+
+② I-STAT(혈액가스):
+  - Intermal QC (3회/일) : 8시간 간격으로 자동실행
+   환자검체 카트리지가 삽입될 때 카트리지내의 금속판과 장비내의 금속판이 연결되는         Electronic QC가 시행된다. 단 환자검체 카트리지가 삽입되지 않는 경우 시간 간격          이 연장될 수 있고 8시간 후 환자검체를 넣게 되면 Internal Simulator QC 먼저 자동         실행 된다. 
+  - Liquid solution QC (1회/월 High, Normal, Low) 
+   매월 장비회사 학술부 직원과 진단검사의학과 현장검사 질관리 책임자는 QC 바코드         를 출력하여 1회 3가지 level의 control을 측정하며 결과값은 ±2SD 범위내의 속함을         확인, 저장, 출력하여 진단검사의학과 전문의의 서명을 받는다. QC chart 는 분기별         로 출력하여 진단검사의학과 전문의의 서명을 받은 후 보관한다.
+</code></pre>
+<ol start="3">
+<li>현장 검사의 내부 정도관리 평가 기준
+(1) 현장검사의 정도관리 물질의 허용한계는 자체적으로 설정하는 것이 원칙이나, 장비         회사에서 검증된 insert지의 recovery range를 사용 한다.</li>
+</ol>
+<p>(2) Control은 Calibration이 잘되었는지, 시약이 다른 Lot로 바뀌었어도 이전의 시약으         로 검사했을 때와 차이가 없는지 등 검사법이 안정적이고 정확한지를 확인하기 위하        여 이용하는 물질이다. control의 lot가 바뀌거나 변성이 없는 한 언제든지 일정한          값을 가질 것으로 예상한다(calibration을 재설정하거나 시약이 바뀌었다고 control          범위를 다시 설정하는 것은 아니다).
+(3) Blood gas analyzer</p>
+<pre><code>① 환자검체 카트리지가 삽입될 때 카트리지내의 금속판과 장비내의 금속판이 연결되는         Internal Simulator QC (Electronic QC)가 8시간마다 시행된다.
+② QC 결과 평가 시 검사된 결과가 허용된 range를 벗어날 경우 장비에서 산출된 환자         결과를 사용하여서는 안되며 이런 중대한 문제가 발생되었을 경우 검사실에 연락하         여 조치를 취한다.
+③ 검사실에서는 매일 각 POCT 장비의 QC 결과를 rapidcom 시스템을 이용하여 관찰
+   하며 만약 문제 발생 시 해당 장비사용을 중지시키고 빠른 시간 내에 원인을 찾아          해
+   결하여야 한다
+③ 내부정도관리 결과는 매월 검사실에서 정리하며 오류가 발생한 경우 수정조치 및
+   개선사항 등을  각 POCT 사용 부서에 공유한다.
+</code></pre>
+<p>(4) Glucose 현장검사</p>
+<pre><code>① 매일 1회 실시하며 제조회사에서 제공하는 QC 물질의 target value를 사용하여            평가한다.
+
+② 검사실에서는 매일 각 POCT 장비의 QC 결과를 한독시스템을 이용하여 관찰하며 만
+   약 문제 발생시 해당 장비사용을 중지시키고 빠른 시간 내에 원인을 찾아 해결하여
+   야 한다.
+③ 매월 부서간 비교를 실시하여 장비간 control 측정값이 ±10% 이내로 한다.  
+   Control 허용범위를 벗어난 경우 시약 및 정도관리 물질 유효기간을 확인하고
+   장비점검을 실시한다.
+</code></pre>
+<ol start="4">
+<li>내부 정도관리 결과가 허용범위를 벗어날 경우 조치사항
+(1) 현장검사 허용범위는 Mean±2SD를 기준으로 Control range에 포함되어야한다.</li>
+</ol>
+<p>(2) 정도관리 물질의 농도가 허용 범위를 벗어난 경우에는 정도관리 물질의 유효기간          및 변질 여부를 점검하고, 이상이 없으면 recalibration을 실시한다. Recalibration후에도       정도관리 물질의 결과가 허용 범위를 벗어나면, 기기에 대한 간단한 문제 해결책           (troubleshooting)을 시행한다. 문제 해결이 안 되는 경우에는 기술 담당에게 보고하고       필요한 조치를 취한다.</p>
+<pre><code>① QC 물질의 결과가 허용된 range를 벗어날 경우 재검을 실시하고 조치를 취한다.
+   (유효기간 확인, QC물질 교체, 장비 교체 등 - 바로잰 장비의 경우).
+② 문제점이 해결되지 않는 경우 즉시 검사실에 알려 문제가 해결될 수 있도록 한다.
+</code></pre>
+<p>(3) Control 물질이 허용 범위를 벗어난 경우 조치
+① 정도관리용 물질이 허용 범위 안에 들어올 때까지 환자 검사 결과는 보고하지              않는다.
+② 일차적으로 현장 검사자는 정도관리 물질을 재검사 한다.
+③ 반복적으로 허용범위를 벗어나면 원인을 찾는다. 다음과 같은 원인에서 발생할 수           있다.
+ㄱ. Control 물질의 변질- 새로운 정도관리용 물질로 재검사 해본다.
+ㄴ. 검사장비의 이상검사- 검사 기기의 기능을  check하고 확인한다.
+ㄷ. 검사시약의 이상 - 개봉일, 유효기간을 확인하고 새로운 시약을 사용한다.
+⑥ 검체와 동시에 실험된 정도관리 물질의 결과가 허용 범위 내에 있는지 확인 후             결과를 보고하여야 한다.
+⑦ 현장검사에서 허용범위를 벗어난 경우 기기에 사유을 입력하여 POCT 프로그램에 현         장검사 질 관리 담당자가 확인 후 필요한 조치를 취한다.</p>
+<pre><code> [I-STAT]
+① Internal QC 진행 후 Fail이 나오면 EXternal Simulator QC를 이용하여 정도관              리를 실시한다.
+② 결과가 Pass 로 나오면 검사를 진행하고 Fail 시 새로운 카트리지를 이용하여               정도관리를 실시한다.
+③ Fail 이 3회 이상 발생 시 현장검사 질관리 담당자에게 연락하고 현장검사 질 관리         담당자는 정도관리 상태 확인 후 기술부에 연락하여 조치를 취한다. 
+</code></pre>
+<p>[BAROZEN]
+① 검사 결과가 display 된 후 &quot;취소&quot;를 눌러 다시 검사한다.
+② A solution을 scan하고 실제 test에 A solution을 점적하였는지 다시 확인 한다.(물질 바           뀜, 뚜껑 바뀜 확인).
+③ 시약 bottle에 있는 유효 기간을 확인한다.
+④ 시약이 개봉한지 90일이 지났는지 확인한다.
+⑤ 시약 bottle에 있는 바코드 번호의 손상 유무를 확인 한다.
+⑥ 위의 사항이 이상이 없는 경우 진단검사의학과로 보고한다.
+⑦ 진단검사의학과에서는 기기의 이상 유무를 확인하고 문제발생 시 기기를 교체       한다.
+⑧ 기기별 CV 10% 이상 발생한 경우 병동별 개별 교육을 실시한다.</p>
+<p>(4) 현장 검사자는 문제점 발생 시 현장검사 질 관리 책임자 및 장비회사 담당자에게          보고하여, 문제점의 원인, 해결 방법, 예방 방지 대책 등에 대해 조치하며, 현장검           사 질 관리 책임자는 이를 확인한다.</p>
+<p>(5) 한달 간격으로 계산한 정도관리물질의 검사결과의 평균이 허용범위를 초과하여 이         동되면, shift나 trend의 원인을 찾는다. 현장 검사자는 월 1회 정도관리 장부를 출력        하여 현장 검사 질 관리 책임자와 진단검사의학과 전문의가 이를 확인, 서명한다.</p>
+<ol start="5">
+<li>Correlation
+(1) 동일 검사에 대하여 서로 다른 방법이나 두 대 이상의 장비로 검사를 시행하는 경우,       검사 결과를 비교 평가하여야 한다.</li>
+</ol>
+<p>(2) 6개월마다 실시한다.</p>
+<p>(3) 평가방법
+① 검체 : 환자 검체 40 test 이상
+② 동일 기종, 동일 QC 물질(제조사, Lot no. 동일)을 사용할 경우에는 QC data를 장비         간 비교에 이용할 수 있다.</p>
+<p>(4) 평가 보고서 해석
+① Graph
+㉠ Difference plot 비교검사법과 후보검사법 간의 차이를 비교검사법 농도에 맞추어           제시</p>
+<pre><code>  ㉡ Difference plot 비교검사법과 후보검사법 간의 % 차이를 비교검사법 농도에 맞추          어 제시 
+            
+  ㉢ 점선은 Medical Decision point
+
+② 회귀분석 : 세 가지 회귀분석(Passing-Bablok, Deming, Regular) 중 Passing-Bablock                  을 참조한다.
+
+
+③ Medical decision point
+   임상적으로 중요한 수치를 결정한다.
+   예) Glucose라면 저혈당, 당뇨병 진단기준에 부합하는 농도 Fasting glucose 70                 mg/dL, 100 mg/dL, 126 mg/dL
+④ Acceptable bias
+  ㉠ 흔히 사용하는 측정 범위 내, 혹은 의학적으로 중요한 농도 값(medical decision            poinits)에서의 bias가 중요함(average bias over the measuring interval or bias at           a specified concentration).
+  ㉡ 검사실에서 설정한 acceptable bias 한계와 측정한 bias 및 CI 값을 비교한다.
+  ㉢ C 위치까지  acceptable로 인정한다.
+</code></pre>
+<p>High Acceptable Bias
+Low Acceptable Bias
+계산된Medical decision point</p>
+<p>(5) Blood gas Correlation
+① 검증기기: 대조장비명 - 검사실 ABL90 2대
+비교장비명 - I-STAT 1대
+② 검 체 : 같은 기간 측정한 AQC level 1,2,3 각 14개 총 42검체
+③ Medical decision point : 각 항목별 AQC level 1,2,3 mean 값
+④ Acceptable bias : 10% 이내
+⑤ 평가 : Passing-Bablok, Deming, Regular 중 “1”에 가장 가까운 회귀분석을 선택</p>
+<ol start="6">
+<li>검사수행능 평가
+(1) 진단검사의학과 전문의 및 현장검사위원회 위원장은 장비의 선택에 있어서 공정한 평      가방법에 의거하여 장비를 선택하여야 한다.
+(2) 검사수행능 평가
+<ol>
+<li>평가항목 : Precision(Within day, Bewteen day), Linearity, Comparison</li>
+</ol>
+</li>
+</ol>
+<p>평가항목
+판정기준
+Precision
+정밀도 CV 값 10% 이내 (혈액가스 CV&lt;5%)
+Linearity
+각 농도별 평균값과 기준값의 Recovery ± 10% 이내
+Recovery 허용범위 90~110%
+Comparison
+① 검체 40개 비교 (R≧0.975, R²≧0.950)
+② 상관계수(r) 0.9~1.0 (높은 상관관계)
+0.7~0.89 (상관관계 양호)
+③ ISO standard 15197 : 2013
+95% 이상 결과의 오차범위
+Glucose ±15% of reference at &gt;or =100mg/dl
+Glucose ±15mg/dl of reference at &lt;100mg/dl
+2) 판정기준 :</p>
+<ol start="3">
+<li>장비 및 기구의 maintenance와 유지</li>
+</ol>
+<p>모든 검사기기와 장비들은 이 지침서와 제조회사의 지침서에 포함되어 있는 검사기기 및 장비 유지 지침서에 준하여 유지, 보수 하여야 한다. 진단검사의학과전문의 및 현장검사위원회 위원장은 장비의 선택에 있어서 공정한 평가방법에 의하여 장비를 사용하고 있어야 한다.</p>
+<ol>
+<li>일반지침
+(1) 검사실 내의 모든 기기는 기능 확인과 장비 예방 점검 대장을 준비한다.</li>
+</ol>
+<p>(2) 수리는 수리신청서를 작성하여 의공학팀에 일차적으로 통보, 수행하고 심각한 문제         발생 시 담당 회사에 의뢰하여 실시한다.</p>
+<p>(3) 장비의 모든 기록은 폐기 처분 시까지 보관한다.</p>
+<p>(4) 모든 검사기기와 장비들은 이 지침서와 제조회사의 지침서에 포함되어 있는 검사기        기 및 장비 유지 지침서에 준하여 유지, 보수 하여야 한다.</p>
+<p>(5) 모든 장비는 주기적으로 정해진 check-list에 따라 기능을 확인한다. 유지와 보수에         관한 어떠한 형태의 조치라도 각 장비나 기기의 유지 및 보수 기록에 모두 빠짐없이        기록되어야 한다.</p>
+<p>(6) 검사기기와 장비들의 유지 및 보수의 1차적 책임은 현장검사 담당자와 현장검사 질        관리 책임자에게 있으며, 현장검사 책임자는 이를 감독하고 기기 및 장비의 유지 및        보수에 관한 모든 기록들을 확인하여 서명하고 담당전문의는 매달 이를 확인하여 서        명한다.</p>
+<p>(7) 바로잰 장비 이상으로 사용이 불가능할 경우 한독 기술부에 연락하여 구비하고 있는       여분의 장비로 교체하여 사용한다.</p>
+<p>(8) ABGA 장비에서 문제가 발생되었을 경우 전극, 시약 등을 체크한 후 추가적인 기능         점검을 위해 장비회사에 연락하여 필요한 조치를 취한다.</p>
+<p>(9) 휴대용 검사기기(바로잰 혈당장비 등)은 검사기기에 의한 감염전파를 효과적으로 예방       할 수 있도록 수시로 소독 후 사용하여야 한다.</p>
+<ol start="2">
+<li>
+<p>기능 확인
+(1) 기계의 기능이 비정상적인 경우
+① 기기 담당자는 책임기사에게 보고한다.
+② 업무 일지에 문제가 발생된 원인과 시간을 기록한다.
+③ 의공학팀의 도움이 필요한 경우 연락한다.
+④ 장비 예방 점검 대장에 수리 내용을 기록한다.
+⑤ 장비 예방 점검 대장은 적당한 장소나 기계 근처에 비치한다.</p>
+</li>
+<li>
+<p>전기 점검
+(1) 12개월마다 의공학팀에서는 모든 전기 장비의 Polarity voltage, 접지와 누전 여부 등        을 점검한다.</p>
+</li>
+</ol>
+<p>(2) Acceptable- 기계 점검 날짜와 점검자 확인을 한다.
+unacceptable- 사용 전에 보수한다.</p>
+<p>(3) 점검 line은 시설팀에서 직접 시행되어 지며, 이에 대한 기록은 본과에서 보관된다.</p>
+<p>(4) 전기 상태에 문제 발생시는 의공학팀 및 시설팀에 통보하여 즉시 해결한다.</p>
+<ol start="4">
+<li>기기 및 장비 유지 및 보수 지침서
+(1) 모든 검사기기 및 장비의 유지 및 보수 지침서는 각 기기 및 장비에 비치되어 있어        야하며, 장비에 이상이 생길 경우 신속하게 연락할 수 있도록 한다.</li>
+</ol>
+<p>(2) 모든 장비는 장비회사 및 담당자 연락처, 장비 구입일, 장비 serial number를               포함한 장비수리 및 서비스에 대한 장부를 만들어 정해진 check-list에 따라 기능을         확인하고 성실히 기록한다. 만일 장비가 단한번의 고장도 없더라도 최소한 연 1회          정도는 제조회사의 서비스 또는 자체 점검을 실시하여야 한다. 기록하는 양식은 각         장비 운용 지침서에 포함되어 있을 경우 이를 이용하고 특별히 만든 양식이 있을           경우 이를 검사기기 및 장비의 유지 및 보수 지침서에 별첨하고 이를 이용한다.</p>
+<ol start="5">
+<li>
+<p>검사기기의 장비 유지 및 보수의 책임
+검사기기와 장비들의 유지 및 보수의 1차적 책임은 현장검사 담당자와 현장검사 질        관리 책임자에게 있으며, 현장검사 책임자는 이를 감독하고 기기 및 장비의 유지 및        보수에 관한 모든 기록들을 확인하여 서명하고 진단검사의학과 전문의는 매달 이를         확인하여 서명한다.</p>
+</li>
+<li>
+<p>현장검사 기기점검 및 평가
+(1) 장비 담당자는 매일 기기 maintenance schedule에 따라 장비 점검을 실시한다.</p>
+</li>
+</ol>
+<p>(2) Calibration및 정해진 정도관리 물질을 이용하여 기기의 정확도 및 정밀도를 평가          하여 환자 검체를 검사 실시한다.</p>
+<p>(3) Calibration 실시 및 정도관리 물질이 허용치를 벗어났을 경우, maintenance sche          dule에 있는 항목을 하나씩 check하여 확인한 후 Recalibration 실시한다.</p>
+<p>(4) 기기에서 발생하는 모든 문제 및 조치 사항은 반드시 검사장비 점검 기록부에 기록        후 보관한다.</p>
+<p>(5) Service maintenance등의 경우에는 반드시 점검사항 및 기기 상태에 대한 기록을          받아 검사 장비 점검 기록부에 보관한다.</p>
+<p>(6) 검사가 끝나면 maintenance schedule 에 따라 장비점검을 실시한다.</p>
+<p>(7) ABGA 검사장비, 바로잰 EXPERT plus 등 현장검사 기기는 휴대하기도 하고 이동하여       사용하므로 사용 전‧후 수시로 일산차병원 소독제 사용에 따른 소독지침을 준수하여        소독 한 후 유지 보관 한다.</p>
+<p>(8) 현장검사 시 사용하는 일회용 채혈침은 한 환자에게만 사용하도록 한다.</p>
+<ol start="7">
+<li>수리 연락 체계
+(1) 기기 담당자는 책임기사에게 보고한다.</li>
+</ol>
+<p>(2) 현장검사 질 관리 담당자는 장비회사 기술부에 연락하여 수리를 받을 것인지 결정한        다.</p>
+<p>(3) 수리 후 수리 기록을 담당 회사에서 받아 보관하고 팀장에게 보고한다. 수리된 내용        문서는 기기 가까이에 두고 문제 해결 지침 장부로 사용한다.</p>
+<p>제 4 장 현장 검사 수기 지침</p>
+<ol>
+<li>
+<p>Glucose (바로잰 EXPERT plus)</p>
+</li>
+<li>
+<p>Blood gas (I-STAT)</p>
+</li>
+<li>
+<p>Glucose (Barozen EXPERT plus)</p>
+</li>
+</ol>
+<ol>
+<li>
+<p>검사명 : 혈당측정기 (모델 : 바로잰 EXPERT plus)</p>
+</li>
+<li>
+<p>임상적 의의
+혈액 속에 들어있는 포도당(Blood Glucose)을 간단하고 빠른 시간에 측정하여 병원 내에서 의심되는 고혈당증 또는 저혈당증 검사, 당뇨병 관리 및 혈당 강하 약 조절에  도움주기 위한 스크린 장비로 사용된다.</p>
+</li>
+<li>
+<p>검사의 원리 :
+sensor type meters(electrochemical), 혈당측정검사지에 혈액을 주입하면, 혈액 안의 포도당 성분과 혈당측정검사지의 효소(GDH)가 화학적으로 반응한다. 이 때 혈액 안의 포도당 농도에 비례하여 정량적으로 전기적 신호가 발생하며, 이 전기적 신호를 혈당 측정기가 측정하여 화면에 포도당 농도로 변환된 값을 보여준다.</p>
+<pre><code>   1단계 : Glucose + GDH-FAD  -&gt;  Gluconic acid + GDH-FADH2
+   2단계 : GDH-FADH2  + Electron Transfer Mediator(Oxidized)  
+           -&gt;  GDH-FAD + Electron Transfer Mediator (Reduced)
+   * FAD and FADH : oxidized and reduced flavin adenine dinucleotide 
+</code></pre>
+</li>
+<li>
+<p>검체의 적정성
+(1) 환자 준비: 식사 전(공복상태 유지), 식후 2시간 등</p>
+</li>
+</ol>
+<p>(2) 검체 종류: 신선한 모세혈 또는 정맥혈 0.4ul 이상이 필요 하다.</p>
+<p>(3) 검체 채취 시 주의사항
+바로잰 H expert는 손끝에서 채혈한 신선한 모세혈 또는 신선한 정맥혈을 사용하도록     만들어져 있으므로 즉시 검사를 수행해야 한다. 또한 신생아 또는 임산부의 혈액인 경우     에는 적혈구 용적률에 따라 측정값이 영향을 받을 수 있다.</p>
+<p>(4) 보관의 안정성: 실온에 검체를 오래 방치하면 당 분해로 인해 혈당량 이 감소하므로        채혈 후 즉시 검사 한다.</p>
+<ol start="5">
+<li>검사 시약
+(1) 1회용 Strips(제조원: 아이센스, 판매원: 한독) / 저장온도(1℃-30℃)
+: 개봉되지 않은 스트립은 유효 기간까지 사용이 가능하다.</li>
+</ol>
+<p>(2) 주의사항
+- Expiration date 이후에 사용하지 말 것
+- 젖게 하거나 손상시키지 말 것
+- 재 사용 하지 말 것
+6)  검사방법
+(1) 손을 깨끗이 씻고 잘 말린다.</p>
+<p>(2) 바로잰 H expert 전원을 3초 동안 누르면 “삐”소리와 함께 부팅이 시작 되며
+‘긴급’ / ‘진행’ 버튼이 화면에 표시된다.</p>
+<p>(3) ‘진행’ 버튼을 클릭하면, 운용자 로그인 화면이 나타난다.</p>
+<p>(4) 검사자의 정보를 바코드 스캐너 또는 화면 키보드로 입력한다.</p>
+<p>(5) 등록이 완료되면 main 화면이 나타난다.</p>
+<p>(6) 환자에 대한 측정을 할 경우 “환자 측정&quot;를 터치한다.</p>
+<p>(7) patient에 대한 정보를 바코드 스캐너 또는 화면 키보드로 입력한다.</p>
+<p>(8) 검사지 용기의 로트를 확인하여 입력하고, 검사지 용기에서 검사지를 꺼낸다.</p>
+<p>(9) 검사지의 측정기 접촉부를 검사지 삽입구에 삽입한다. 삐~소리가 날 때까지 가볍게
+밀어 넣는다. 이때 검사지가 구부러지지 않도록 주의한다.</p>
+<p>(10) 검사지 코드를 자동으로 인식한 후 화면에 혈액주입표시가 나타난다.</p>
+<p>(11) 측정기에서 삐~소리가 날 때까지 혈액 주입부 끝의 좁은 틈에 검체를 점적한다.
+(시료의 부피는 0.4 μL 이상이면 정확한 결과를 얻을 수 있다.)</p>
+<p>(12) 혈액주입시 확인창 전체가 적색으로 변해야 한다. 만일 확인창이 채워지지 않으면
+에러메세지가 표시되거나 측정결과가 부정확할 수 있다.</p>
+<p>(12) 혈당 수치가 표시되기까지는 5초의 시간이 소요된다.</p>
+<p>(13) 측정이 완료되면 화면에 측정결과가 나타난다.
+측정 결과는 측정기에 자동으로 저장된다.</p>
+<p>(14) 다른 환자에 대한 측정을 할 경우 &quot;확인&quot;, 재검을 할 경우 “취소&quot; 버튼을 누른다.
+(결과의 신빙성이 의심될 때는 새로운 strip으로 재검사 한다.)</p>
+<p>(15) 사용한 strip을 폐기한다.</p>
+<p>(16) 검사결과가 나오면 Cradle에 장착하고 결과가 자동전송 된다.</p>
+<ol start="7">
+<li>
+<p>결과보고
+검사가 모두 끝난 바로젠 H expert를 병동에 비치되어 있는 Cradle에 장착하거나, Wi-fi     또는 LAN system 구축시 wi-fi/Lan을 연결하면, 자동으로 결과가 전산보고 된다.</p>
+</li>
+<li>
+<p>Calibration
+strip의 뒷면에 적외선 흡수 물질을 사용하여 표시한 code 정보를 장비의 IR sensor로
+barcode를 읽기 때문에, 별도의 calibration이 불필요하다.</p>
+</li>
+<li>
+<p>정도관리 및 유지 보수 관리
+(1) 정도관리 및 유지 보수 관리 시행횟수 및 시간
+정도관리: 검사 전 daily 시행 (am 6:00)
+유지 보수 관리 : (주)한독의 엔지니어가 매달 1회 유지 보수 관리를 시행하며, 설치        된 전 병동의 모든 미터기를 유지 보수 관리 지침에 따라 점검한다.</p>
+</li>
+</ol>
+<p>(2) 정도관리 시약
+상품화된 바로잰 H expert control 물질을 이용하여 정해진 기준에 맞추어 시행 한다.
+포도당을 포함하고 있는 푸른색의 액체로 농도가 다른 A와 B가 있다.</p>
+<p>(3) 정도관리 용액 사용 시 주의사항
+① 바로잰 포도당 대조 용액만을 사용해야 한다.
+control solution은 8-30℃ 사이의 온도에서 보관하여야 하며, 최초 개봉 시
+bottle에 개봉 일을 표기한다. (open 3개월까지)
+② 만약 냉장 보관한 경우 사용 전에 반드시 시약을 사용하기 전 최소 30분 간
+20~25℃ 유지 후 사용한다.
+③ 포도당 대조 용액은 사용 전 용기를 흔들어 용액의 첫 방울은 따라 버리고 정확한         결과를 위해 용기입구를 닦는다. 사용 후에는 반드시 뚜껑을 닫아서 보관하여야 한다.
+④ solution bottle에 표기된 유효기간을 반드시 엄수하여 사용하고, 유효기간이 지나면        버린다.
+⑤ 보관 시 직사광선을 피하여 보관한다.
+bottle에 표기된 바코드 번호가 손상되지 않도록 취급 한다.</p>
+<p>(4) 정도관리 방법
+① 바로잰 H expert 전원을 3초 동안 누르면 “삐”소리와 함께 부팅이 시작되며 ‘진행’          버튼이 화면에 표시된다.
+② 정도관리 검사자의 사번을 바코드 스캐너 또는 화면 키보드로 입력한다.
+③ 정도관리 검사를 위하여 main 화면의 “Control Test&quot;를 터치하여 레벨 A를 선택한          다.
+④ Control solution A Lot의 라벨에 인쇄된 바코드 및 검사지 Lot의 라벨에 인쇄된
+바코드를 스캔한다.
+⑤ 검사지 용기를 개봉하여 검사지를 꺼내어 검사지의 측정기 접촉부를 검사지 삽입구         에 삽입한다. 삐~소리가 날 때까지 가볍게 밀어 넣는다.
+이때 검사지가 구부러지지 않도록 주의한다.
+⑥ 검사지 코드를 자동으로 인식한 후 화면에 혈액주입표시가 나타난다.
+⑦ 측정기에서 삐~소리가 날 때까지 혈액 주입부 끝의 좁은 틈에 Control Solution
+을 점적한다. (시료의 부피는 0.4μL 이상이면 정확한 결과를 얻을 수 있다.)
+⑧ 5초 후 측정이 완료되면 화면에 측정결과가 나타난다.
+Control solution A의 정도관리 결과에 대한 OK 확인 후 Control solution B에
+대한 정도관리를 반복하여 측정한다.
+⑨ 검사결과가 나오면 “확인” 터치하면 진단검사의학과 DM에 저장되며, 확인할 수
+있다.</p>
+<p>(5) 정도관리 control 값이 허용범위를 벗어났을 때의 조치 방법
+① 검사 결과가 display 된 후 &quot;취소&quot;를 눌러 다시 검사한다.
+② A solution을 scan하고 실제 test에 A solution을 점적하였는지 다시 확인한다.
+(물질 바뀜, 뚜껑 바뀜 확인).
+③ 시약 bottle에 있는 유효 기간 및 개봉한지 90일이 지났는지 확인한다.
+④ 시약 bottle에 있는 바코드 번호의 손상 유무를 확인 한다.
+⑤ 위의 사항이 이상이 없는 경우 진단검사의학과로 보고하고
+바로잰 H expert 장비의 이상 유무를 (주)한독으로 부터 확인/조치 받는다.</p>
+<p>(6) 병동 QC 물질 관리
+병동에서 QC물질의 소진 및 유효기간이 지난 경우 진단검사의학과에서 교체 하고 분       기별로 월 점검 시 일괄 교체한다.</p>
+<p>(7) QC 차트 및 유지 보수 리포트 관리
+① QC 차트 관리: POCT glucose 검사는 상품화된 정도관리물질(middle/high solution)
+을 이용하여 정도관리 프로그램에 맞춰 내부정도 관리를 실시하고 DM을 통해 확인        하며 Levey &amp; Jennings graph를 작성하여 trend를 조사 관리한다.
+② 유지보수 리포트 관리: (주)한독이 유지 보수 관리를 시행한 후 그 결과를 별도 양식        의 리포트로 제공 받아 POCT 관리자가 관리하도록 한다.</p>
+<ol start="10">
+<li>혈당 검사 가능 범위
+(1) 참고치: 74 - 107 mg/dl</li>
+</ol>
+<p>(2) AMR value: 20 - 600 mg/dL</p>
+<p>(3) 검사허용 한계: 20-600mg/dL</p>
+<p>(4) 검사의 허용한계를 벗어난 경우 즉시 재검을 실시한다. 만약 같은 결과가 나오면 검        사자는 즉시 주치의에게 보고하여 환자의 처치가 신속히 이루어질 수 있도록 한다.         재검을 실시하여 결과가 이상하면 관련검사실에 연락하여 지침을 받도록 한다.</p>
+<ol start="11">
+<li>
+<p>A/S 연락처
+- 시약 공급 ㈜한독 : 02)527-5290
+- 기술 담당 (주)한독 : 02)527-5266
+- 학술 담당 (주)한독 : 02)527-5264</p>
+<ul>
+<li>장비 이상 발생 응급 상황 연락처
+<ul>
+<li>평일 9:00 ~ 18:00 ㈜한독 Tel. 02)527-5266</li>
+<li>비상시 ㈜한독 메디컬사업본부 내선번호 Tel.02)527-5266</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>검사결과에 영향을 미칠 수 있는 사항 (간섭물질)</p>
+</li>
+</ol>
+<ul>
+<li>혈청 또는 혈장검체는 측정값에 영향을 줄 수 있으므로 전혈을 서용하도록 한다.</li>
+<li>정맥혈은 EDTA나 Heparin 전혈을 사용하고 lodoacetate나 fluoride/oxalate등 다른
+항응고제는 사용하지 않는다.</li>
+<li>신생아의 경우에는 적혈구용적률에 의해 측정값에 영향을 받을 수 있다.</li>
+<li>자일로스 7.1mg/dL이상일 때 혈당측정에 영향을 줄 수 있다.</li>
+</ul>
+<ol start="13">
+<li>참고문헌
+바로잰 H플러스 혈당측정검사지 insert</li>
+</ol>
+<ol start="2">
+<li>Blood gas (I-STAT – NICU)</li>
+</ol>
+<ol>
+<li>
+<p>검사명 : 혈액가스 분석기(Arterial Blood Gas Analysis )</p>
+</li>
+<li>
+<p>검사원리 :</p>
+</li>
+</ol>
+<p>→ 혈액을 포함한 카트리지가 삽입되면 우선 Calibrant alc   시약으로 Reference 저항을 측정한 뒤 혈액을 돌려 혈액의   저항을 측정한다. 결과 값은 reference와 혈액의 전위차를   측정하여 수치로 나타낸다.</p>
+<ol start="3">
+<li>
+<p>임상적의의
+동맥혈 가스 분석은 폐의 가스 교환 능력을 알아보는 가장 주된 방법이며 중환자를 평가하고 관리 하는데 가장 기본적으로 이용하는 검사이다. 동맥혈 가스 분석은 인공호흡기로  호흡하는 대상자와 폐질환을 갖고 있는 대상자의 호흡기능을 평가한다. 또는 동맥혈의 pH를 측정할 수 있으므로 인체의 산 -염기평형 상태를 알 수 있다.</p>
+</li>
+<li>
+<p>검체 Preferred specimen type
+(1) 우선되는 검체 : Arterial , Venous</p>
+</li>
+</ol>
+<p>(2) 검체 량 : 일반적인 ABGA 의 경우 95 ㎕ 가 필요로 하며 혈액 한 방울에서 세 방울       이면 검사 가능</p>
+<p>(3) 검체보관 : 별도의 보관은 없으며 Fresh whole blood 사용</p>
+<ol start="5">
+<li>시약 Required reagents
+(1) 제조/공급회사 : abbott point of care INC / (주) 피오씨 코리아</li>
+</ol>
+<p>(2) 조성 : 25EA/1Box</p>
+<p>(3) 준비 : 냉장 보관된 카트리지를 실온화 한다.</p>
+<p>(4) 보관 : I-stat 카트리지는 항시 냉장보관을 해야 하며 냉장 보관 온도는 2~8 ℃서 보관             을 하여야 한다.</p>
+<ol start="6">
+<li>
+<p>검사방법
+(1) 장비의 전원을 On 한다.
+(2) Test Menu에서 2번 I-STAT Cartridge를 선택한다.
+(3) Operator ID와 Patient ID를 입력한다.
+(4) 카트리지 Lot 바코드를 입력하라고 나오면 카트리지 봉투의 상단에 있는 바코드를 스       캔한다.
+(5) 장비의 화면에 “Insert Cartridge&quot; 메시지와 그림이 나온다.
+(6) 카트리지를 혈액으로 채운다.
+(7) 카트리지의 뚜껑을 닫고 수평을 유지한 채 천천히 장비에 삽입한다.
+(8) 결과를 확인하고 프린트한 후 EMR로 전송한다.</p>
+</li>
+<li>
+<p>Calibration
+(1) Calibration 물질 : 카트리지 내 시약
+(2) Calibration을 실시해야 하는 경우 : 매 검사 시마다 자동적으로 수행한다.
+(3) Calibration 과정 : I-stat Cartridge 안에 Calibration 시약이 들어있어 매번 검사 시 마       다 Calibration을 하게 되어있다</p>
+</li>
+<li>
+<p>Quality control
+(1) 정도관리 물질 : Electronic Simulator , Internal Simulator</p>
+</li>
+</ol>
+<p>(2) 정도관리 방법 : Internal simulator 는 자동적으로 8시간마다 자동하도록 세팅이 되어       있으며 External simulator 는 사용자가 매 24시간 마다 직접 장비에 삽입함으로서 확       인한다. simulator 의 검사 시간은 60초 이며 일회용 카트리지를 사용하는 장비의 특       성상 카트리지와 Analyzer 사이의 원활한  전달 능력을 확인한다. Electronic simulator       의 결과는 PASS or FAIL 로 나타난다. FAIL 일 경우 재검사를 시행하며 연속으로 3회       이상 FAIL 발생 시 공급업체에 연락을 한다.</p>
+<ol start="9">
+<li>검사과정 Procedural steps
+(1) 검사과정 : 환자에게서 혈액을 샘플링 하여 I-stat 카트리지에 2~3방울을 주입한 후 카       트리지 덮개를 닫고 I-stat 장비에 삽입을 하게 되면 검사가 진행이 된다.</li>
+</ol>
+<p>(2) 분석시간 : Calibration을 포함해 120초 정도의 시간이 소요된다.</p>
+<ol start="10">
+<li>정상 참고치( Reference ranges)
+(1) 측정범위</li>
+</ol>
+<p>Reference Values
+Reportable Range
+Reference Range
+Arterial
+Venous
+Urea Nitrogen
+(BUN)
+3-140 mg/dL
+8-26 mg/dL
+8-26 mg/dL
+Glucose
+(Glu)
+1.1-38.9 mmol/L
+20-700 mg/dL
+3.9-5.8 mmol/L
+70-105 mg/dL
+3.9-5.8 mmol/L
+70-105 mg/dL
+Chloride
+(Cl)
+65-140 mmol/L
+98-109 mmol/L
+98-109 mmol/L
+Sodium
+(Na)
+100-180 mmol/L
+138-146 mmol/L
+138-146 mmol/L
+Potassium
+(K)
+2.0-9.0 mmol/L
+3.5-4.9 mmol/L
+3.5-4.9 mmol/L</p>
+<p>Ionized Calcium
+(iCa)
+0.25-2.50 mmol/L
+1.0-10.0 mg/dL
+1.12-1.32 mmol/L
+4.5-5.3 mg/dL
+1.12-1.32 mmol/L
+4.5-5.3 mg/dL
+Hematocrit
+(HCT)
+10-75% PCV
+0.10-0.75 Fraction
+38-51% PCV
+0.38-0.51 Fraction
+38-51% PCV
+0.38-0.51 Fraction
+Hemoglobin *
+(Hgb)
+34-255 g/L
+3-26 g/dL
+2-16 mmol/L
+120-170 g/L
+12-17 g/dL
+7-11 mmol/L
+120-170 g/L
+12-17 g/dL
+7-11 mmol/L
+pH
+6.5-8.0
+7.35-7.45
+7.31-7.41
+PCO2
+5-130 mmHg
+0.67-17.33 kPa
+35-45 mmHg
+4.67-6.00 kPa
+41-51 mmHg
+5.47-6.80 kPa
+PO2
+5-800 mmHg
+0.7-106.6 kPa
+80-105 mmHg
+10.7-14.0 kPa</p>
+<p>TCO2 *
+1-85 mmol/L
+23-27 mmol/L
+24-29 mmol/L
+HCO3 *
+1-85 mmol/L
+22-26 mmol/L
+23-28 mmol/L
+BE *
+(-30)-(+30) mmol/L
+(-2)-(+3) mmol/L
+(-2)-(+3) mmol/L
+sO2 *
+N/A
+95-98 %
+N/A
+Anion Gap *
+(-10)-(+99) mmol/L
+10-20 mmol/L
+10-20 mmol/L</p>
+<p>(2) 방해물질 : 별첨된 CTI ( Cartridge Test Information) sheet 참조</p>
+<p>(3) 성능
+① 감도 : 위의 별첨 CTI Sheet 참조
+② 특이성 : I-stat 장비는 포터블 ABGA 장비로서 가볍고 누구나 쉽게 검사를 할 수                    있으며 응급 검사 시 막힘없이 검사를 시행할 수 있습니다.
+③ 동시재현성 : 별첨된 CTI Sheet 참조</p>
+<ol start="11">
+<li>Significant error의 발생요인</li>
+</ol>
+<p>측정항목
+변화
+원인
+pO2
+↓
+혈구 세포의 지속적인 산소 소모
+pCO2
+↑
+CO2는 세포내 대사활동의 산물
+pH
+↓</p>
+<ul>
+<li>CO2 증가로 pH 하락</li>
+<li>지속적인 당분해로 H+ 증가</li>
+</ul>
+<p>측정항목
+변화
+pH, pO2
+↑
+pCO2
+↓
+12) 검체 채취와 분석 완료 사이에 일어나는 검체에서의 metabolic change</p>
+<p>(1) 상온에서 30분 이상 보관할 경우</p>
+<p>(2) 대기와의 접촉(contamination by room air)</p>
+<p>(3) air bubble 주의,  검체의 부적절한 mixing</p>
+<ol start="13">
+<li>
+<p>유지보수 Maintenance
+사용자에 의한 별도의 유지보수는 필요 없으며 월 1회 공급업체가 에러 및 장비 이상      유무를 점검 에러 및 기타 문제 발생 시 사용자 교육 및 그에 상응하는 조치를 취함.</p>
+</li>
+<li>
+<p>참고문헌</p>
+</li>
+</ol>
+<ul>
+<li>시약회사 제공 manual 참조</li>
+</ul>
+
+</body>
+</html>
